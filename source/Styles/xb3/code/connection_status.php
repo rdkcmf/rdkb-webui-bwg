@@ -90,8 +90,8 @@
       "SSID4"               => "Device.WiFi.SSID.4.SSID",
       "SSID5"               => "Device.WiFi.SSID.5.SSID",
       "SSID6"               => "Device.WiFi.SSID.6.SSID",
-      "Enable1"             => "Device.WiFi.SSID.1.Enable",
-      "Enable2"             => "Device.WiFi.SSID.2.Enable",
+      "Enable1"             => "Device.WiFi.SSID.1.Status",
+      "Enable2"             => "Device.WiFi.SSID.2.Status",
       "Enable3"             => "Device.WiFi.SSID.3.Enable",
       "Enable4"             => "Device.WiFi.SSID.4.Enable",
       "Enable5"             => "Device.WiFi.SSID.5.Enable",
@@ -509,7 +509,7 @@ $(document).ready(function() {
         <div class="form-row">
           <span class="readonlyLabel">Wireless Network (Wi-Fi 2.4 GHz):</span> <span class="value">
           <?php 
-              if("true" == $wifi_value["Enable1"]) 
+              if("up" == strtolower($wifi_value["Enable1"])) 
                 echo "Active";
               else
                 echo "Inactive";
@@ -548,7 +548,7 @@ $(document).ready(function() {
         <div class="form-row">
           <span class="readonlyLabel">Wireless Network (Wi-Fi 5 GHz):</span> <span class="value">
           <?php 
-              if("true" == $wifi_value["Enable2"]) 
+              if("up" == strtolower($wifi_value["Enable2"]))
                 echo "Active";
               else
                 echo "Inactive";
