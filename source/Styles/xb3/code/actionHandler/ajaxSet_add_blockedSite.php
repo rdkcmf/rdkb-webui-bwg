@@ -49,6 +49,7 @@ if( array_key_exists('URL', $blockedSiteInfo) ) {
 	if ($result == ""){
 	   	//firstly, check whether URL exist or not
 		$url = $blockedSiteInfo['URL'];
+		$checkUrl= explode("://",$url);
 		$rootObjName    = "Device.X_Comcast_com_ParentalControl.ManagedSites.BlockedSite.";
 		$paramNameArray = array("Device.X_Comcast_com_ParentalControl.ManagedSites.BlockedSite.");
 		$mapping_array  = array("Site", "AlwaysBlock", "StartTime", "EndTime", "BlockDays");
@@ -62,7 +63,8 @@ if( array_key_exists('URL', $blockedSiteInfo) ) {
 			//Check for time and day conflicts
 			$TD1=array($startTime, $endTime, $blockDays);
 			$TD2=array($start_Time, $end_Time, $block_Days);
-			if (($url == $value["Site"]) && ((($always_Block == "true") || ($block == "true") || time_date_conflict($TD1, $TD2)))){
+			$urlVal=explode("://",$value["Site"]) ;
+			if ((strcasecmp($checkUrl[1],$urlVal[1])==0) && ((($always_Block == "true") || ($block == "true") || time_date_conflict($TD1, $TD2)))){
 				$result .= "Conflict with other blocked site rule. Please check your input!";
 				break;
 			}
