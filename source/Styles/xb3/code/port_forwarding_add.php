@@ -299,7 +299,7 @@ function isIp4AddrRequired()
 			for(i=0;i<4;i++){
 				j = i+1;
 				if(parseInt(beginArr[i]) > parseInt($("#server_ip_address_"+j).val()) || parseInt($("#server_ip_address_"+j).val()) > parseInt(endArr[i])){
-					if((parseInt(Subnetmask[i]) & parseInt($("#server_ip_address_"+j).val())) != 0){
+                                    if((parseInt(Subnetmask[i]) & parseInt($("#server_ip_address_"+j).val()) !=0) || parseInt($("#server_ip_address_"+j).val()) == 0){
 						IPv4_not_valid = true;
 						break;
                                         }
