@@ -28,6 +28,27 @@
 
 <?php include('includes/nav.php'); ?>
 
+<style>
+
+	.form-row-message{
+    	position: relative;
+    	padding-bottom: 44px;
+	}
+
+	[for=custom_name]{
+    	position: absolute;
+    	top: 66px;
+	}
+
+	[for=custom_mac]{
+    	top: 66px;
+    	position: absolute;
+    	right: 69px;
+    	max-width: 120px;
+	}
+
+</style>
+
 <script type="text/javascript">
 $(document).ready(function() {
     comcast.page.init("Content Control > Managed Devices > Add Blocked Device", "nav-devices");
@@ -299,7 +320,7 @@ $(document).ready(function() {
 
 			</table>
 			<label style="margin:20px 0 0 15px">Custom Device:</label>
-			<div class="form-row">
+			<div class="form-row form-row-message">
 				<table id="add_allowed_device" class="data">
 					<tr>
 						<th class="number">&nbsp;</th>
