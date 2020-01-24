@@ -918,7 +918,7 @@ function setIPconfiguration(configuration){
 			success: function(){            
 				jHide();
 				jProgress("Please wait for rebooting ...", 999999);
-				setTimeout(checkForRebooting, 4 * 60 * 1000);
+				setTimeout(checkForRebooting, 3 * 50 * 1000);
 			},
 			error: function(){            
 				jHide();
