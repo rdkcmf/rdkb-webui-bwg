@@ -354,11 +354,6 @@ else if ("mac_ssid" == $arConfig['target'])
 else if ("save_filter" == $arConfig['target'])
 {
 	$ssids = array($i);
-
-	//xfinitywifi[HotSpot] filter rule apply to both 5 & 6 SSID
-	if ("5"==$i || "6"==$i){
-		$ssids = array("5","6");
-	}
 	$ft_config_filtered = array();
 	foreach($arConfig['ft'] as $key => $value) {
 		//Remove Invalid characters Less than (<), Greater than (>), Ampersand (&), Double quote ("), Single quote ('), Pipe (|).
