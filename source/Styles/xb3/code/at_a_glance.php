@@ -303,12 +303,12 @@ function popUp(URL) {
 				echo '<div class="form-row even">';
 					echo '<div class="form-row even">';
 						echo '<span class="readonlyLabel">Wi-Fi SSID:</span>';
-						echo '<span class="value">';echo $wifi_ssid;echo '</span>';
+						echo '<span class="value noTrimSpace">';echo $wifi_ssid;echo '</span>';
 					echo '</div>';
 					if ("admin" == $_SESSION["loginuser"]) {
 						echo '<div class="form-row even">';
 							echo '<span class="readonlyLabel">Wi-Fi Passkey:</span>';
-							echo '<span class="value">';echo $wifi_passkey;echo '</span>';
+							echo '<span class="value noTrimSpace">';echo $wifi_passkey;echo '</span>';
 						echo '</div>';
 					}
 				echo '</div>';
@@ -317,24 +317,24 @@ function popUp(URL) {
 				echo '<div class="form-row even">';
 					echo '<div class="form-row even">';
 						echo '<span class="readonlyLabel">Wi-Fi SSID (2.4 GHz):</span>';
-						echo '<span class="value">';echo $wifi_24_ssid;echo '</span>';
+						echo '<span class="value noTrimSpace">';echo $wifi_24_ssid;echo '</span>';
 					echo '</div>';
 					if ("admin" == $_SESSION["loginuser"]) {
 						echo '<div class="form-row even">';
 							echo '<span class="readonlyLabel">Wi-Fi Passkey (2.4 GHz):</span>';
-							echo '<span class="value">';echo $wifi_24_passkey;echo '</span>';
+							echo '<span class="value noTrimSpace">';echo $wifi_24_passkey;echo '</span>';
 						echo '</div>';
 					}
 				echo '</div>';
 				echo '<div class="form-row odd">';
 					echo '<div class="form-row odd">';
 						echo '<span class="readonlyLabel">Wi-Fi SSID (5 GHz):</span>';
-						echo '<span class="value">';echo $wifi_50_ssid;echo '</span>';
+						echo '<span class="value noTrimSpace">';echo $wifi_50_ssid;echo '</span>';
 					echo '</div>';
 					if ("admin" == $_SESSION["loginuser"]) { 
 						echo '<div class="form-row odd">';
 							echo '<span class="readonlyLabel">Wi-Fi Passkey (5 GHz):</span>';
-							echo '<span class="value">';echo $wifi_50_passkey;echo '</span>';
+							echo '<span class="value noTrimSpace">';echo $wifi_50_passkey;echo '</span>';
 						echo '</div>';
 					}
 				echo '</div>';

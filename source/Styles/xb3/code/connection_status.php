@@ -507,7 +507,7 @@ overflow-wrap: break-word;
 
   <div style="width:355px;float:left;position:relative;left:5px;" class="wifi_section"><!-- contain private and public Wi-Fi -->
     <div class="module forms block private-wifi">
-        <h2>Private Wi-Fi Network- <span class="ssid-style">
+        <h2 class="noTrimSpace">Private Wi-Fi Network- <span class="ssid-style">
            <?php
               echo htmlspecialchars($wifi_value["SSID1"], ENT_NOQUOTES, 'UTF-8');
             ?>
@@ -550,7 +550,7 @@ overflow-wrap: break-word;
     </div><!-- end .module private wifi 2.4-->  
      
     <div class="module forms block private-wifi" style="position:relative;top:0px;right:0px;">
-        <h2>Private Wi-Fi Network- <span class="ssid-style">
+        <h2 class="noTrimSpace">Private Wi-Fi Network- <span class="ssid-style">
            <?php
               echo htmlspecialchars($wifi_value["SSID2"], ENT_NOQUOTES, 'UTF-8');
             ?>
