@@ -81,7 +81,8 @@ $wifi_param = array(
 	);
 $model_name		= getStr("Device.DeviceInfo.ModelName");
 $isDeviceCBR 	= ($model_name == "CGA4131COM")||($model_name == "CGA4131");
-if($isDeviceCBR && ($id == 1 || $id == 2)){
+$isDeviceBWG    = ($model_name == "DPC3939B") || ($model_name == "DPC3941B");
+if(($isDeviceCBR && ($id == 1 || $id == 2)) || ($isDeviceBWG && ($id == 1 || $id == 2))){
 	$wifi_param["RadiusServerIPAddr"]		= "Device.WiFi.AccessPoint.$id.Security.RadiusServerIPAddr";
 	$wifi_param["RadiusServerPort"]			= "Device.WiFi.AccessPoint.$id.Security.RadiusServerPort";
 	$wifi_param["RadiusSecret"]				= "Device.WiFi.AccessPoint.$id.Security.RadiusSecret";
@@ -109,7 +110,7 @@ $possible_channels	= $wifi_value['possible_channels'];
 $defaultSSID		= ($id == 3)?"":$wifi_value['DefaultSSID'];
 $defaultKeyPassphrase	= ($id == 3)?"":$wifi_value['DefaultKeyPassphrase'];
 
-if($isDeviceCBR){
+if(($isDeviceCBR) || ($isDeviceBWG)){
 	$RadiusServerIPAddr 	= $wifi_value["RadiusServerIPAddr"];
 	$RadiusServerPort 		= $wifi_value["RadiusServerPort"];
 	$RadiusSecret 			= $wifi_value["RadiusSecret"];
@@ -1005,10 +1006,10 @@ function setResetInfo(info) {
 				<option value="WPA2_PSK_TKIPAES"	title="WPA requires an 8-63 ASCII character or a 64 hex character password. Hex means only the following characters can be used: ABCDEF0123456789." <?php if ("WPA2_PSK_TKIPAES"==$security)    echo "selected";?> >WPA2-PSK (TKIP/AES)</option>
 				<option value="WPAWPA2_PSK_TKIPAES" title="WPA requires an 8-63 ASCII character password." <?php if ("WPAWPA2_PSK_TKIPAES"==$security) echo "selected";?> >WPAWPA2-PSK (TKIP/AES)(Recommended)</option>
 		<?php
-			if($isDeviceCBR && ("WPA2_Enterprise"==$security)){
+			if(($isDeviceCBR && ("WPA2_Enterprise"==$security)) || ($isDeviceBWG && ("WPA2_Enterprise"==$security))){
 				echo '<option value="WPA2_Enterprise"		title="WPA2-Enterprise uses a RADIUS servers for authentication purposes." selected >WPA2-Enterprise</option>';
 			}
-			else if($isDeviceCBR && ("WPA_WPA2_Enterprise"==$security)){
+			else if(($isDeviceCBR && ("WPA_WPA2_Enterprise"==$security)) || ($isDeviceBWG && ("WPA_WPA2_Enterprise"==$security))){
 				echo '<option value="WPA_WPA2_Enterprise" 	title="WPA-WPA2-Enterprise uses a RADIUS servers for authentication purposes." selected >WPA-WPA2-Enterprise</option>';
 			}
 		?>
@@ -1105,7 +1106,7 @@ function setResetInfo(info) {
 		<input name="path" id="path4" type="radio" value="WEP_128"><b>WEP (128)</b><br><span style="color: red;">This is only applicable for legacy Wi-Fi devices. Using this option will impact your Wi-Fi performance and less secure.Select this option only if you have very old Wi-Fi device and if it does not support WPA or WPA2 option.</span><br-->
 		<input name="path" id="path5" type="radio" value="None"><b>Open (Risky)</b><br><span style="color: red;">This is not recommended as it is doesn't have any security and anybody can connect to your Wi-Fi network.</span><br>
 
-<?php if($isDeviceCBR){ ?>
+<?php if(($isDeviceCBR) || ($isDeviceBWG)){ ?>
 
 		<div id="WPA2_Enterprise_input" style="float: left;">
 			<input name="path" id="path6" type="radio" value="WPA2_Enterprise"><b>WPA2-Enterprise</b><br><span>This mode is for setting the security options for Enterprise mode.</span>
