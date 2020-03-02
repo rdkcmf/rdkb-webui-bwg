@@ -34,6 +34,7 @@ $arConfig = json_decode($jsConfig, true);
 //Model for CBR is CGA4131COM
 $model_name		= getStr("Device.DeviceInfo.ModelName");
 $isDeviceCBR 	= ($model_name == "CGA4131COM");
+$isDeviceBWG    = ($model_name == "DPC3939B") || ($model_name == "DPC3941B");
 $thisUser = $arConfig['thisUser'];
 
 /*********************************************************************************************/
@@ -93,7 +94,7 @@ if ("true" == getStr("Device.WiFi.Radio.$i.Enable")) {
 			$validation = false;
 			$response_message = 'Please change Network Password !';
 	}
-	if($isDeviceCBR && ($arConfig['security'] == 'WPA_WPA2_Enterprise' ||  $arConfig['security'] == 'WPA2_Enterprise')){
+	if(($isDeviceCBR && ($arConfig['security'] == 'WPA_WPA2_Enterprise' ||  $arConfig['security'] == 'WPA2_Enterprise')) || ($isDeviceBWG && ($arConfig['security'] == 'WPA_WPA2_Enterprise' ||  $arConfig['security'] == 'WPA2_Enterprise'))){
 		if($validation) $validation = validIPAddr($arConfig['RadiusServerIPAddr']);
 		if($validation) $validation = validPort($arConfig['RadiusServerPort']);
 		if($validation) $validation = is_allowed_string($arConfig['RadiusSecret']);
@@ -202,7 +203,7 @@ if ("true" == getStr("Device.WiFi.Radio.$i.Enable")) {
 			DmExtSetStrsWithRootObj("Device.WiFi.", true, array(
 				array("Device.WiFi.AccessPoint.$i.Security.ModeEnabled", "string", $encrypt_mode), 
 				array("Device.WiFi.AccessPoint.$i.Security.X_CISCO_COM_EncryptionMethod", "string", $encrypt_method)));
-			if($isDeviceCBR && ($arConfig['security'] == 'WPA_WPA2_Enterprise' ||  $arConfig['security'] == 'WPA2_Enterprise')){
+			if(($isDeviceCBR && ($arConfig['security'] == 'WPA_WPA2_Enterprise' ||  $arConfig['security'] == 'WPA2_Enterprise')) || ($isDeviceBWG && ($arConfig['security'] == 'WPA_WPA2_Enterprise' ||  $arConfig['security'] == 'WPA2_Enterprise'))){
 				setStr("Device.WiFi.AccessPoint.$i.Security.RadiusServerIPAddr", $arConfig['RadiusServerIPAddr'], true);
 				setStr("Device.WiFi.AccessPoint.$i.Security.RadiusServerPort", $arConfig['RadiusServerPort'], true);
 				setStr("Device.WiFi.AccessPoint.$i.Security.RadiusSecret", $arConfig['RadiusSecret'], true);
