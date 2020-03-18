@@ -547,7 +547,7 @@ $(document).ready(function() {
 		$xml_Encryption = "3";
 		$xml_WMMEnable = "1";	
 		$xml_security = "None";
-		$path = "/nvram/bbhm_cur_cfg.xml";
+		$path = "/tmp/bbhm_cur_cfg.xml";
 
 		if (file_exists($path))
 		{
