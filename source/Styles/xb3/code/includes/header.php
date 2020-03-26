@@ -40,7 +40,7 @@ csrfprotector_rdkb::init();
 	$not_bridge_static_pages = array('local_ip','wizard', 'firewall', 'managed', 'parental', 'forwarding', 'triggering', 'dmz', 'routing');
 	$not_mso_pages = array('password_change.php','hs_port_forwarding','wizard_step1.php','qos1');
 
-        if($modelName == "CGA4131COM") {
+        if($modelName == "CGA4131COM" || $modelName == "CGA4332COM") {
              $not_mso_pages_tccbr = array('moca.php','moca_diagnostics.php');
              $not_cusadmin_pages_tccbr = array('moca.php','moca_diagnostics.php');
                       if ($_SESSION['loginuser'] == 'cusadmin') {
