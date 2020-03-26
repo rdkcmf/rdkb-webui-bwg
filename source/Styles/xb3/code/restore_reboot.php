@@ -324,7 +324,7 @@ function checkForRebooting() {
 			<span class="value">Press "Restore Factory Settings" to activate your Gateway <span style="padding-left:231px">Default Settings. All your previous settings will be lost.</span></span>
 		</div>
 		<?php
-		if($ModelName=="CGA4131COM"){
+		if(($ModelName=="CGA4131COM") || ($ModelName=="CGA4332COM")){
 		?>
 			<div id="div7" class="form-row odd">
 			<span class="readonlyLabel"><a href="#" class="btn" id="btn7" title="Reset mta module" style="text-transform : none;">RESET MTA MODULE</a></span> 

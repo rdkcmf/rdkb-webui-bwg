@@ -80,7 +80,7 @@ $wifi_param = array(
 	"2_SupportedStandards"	=> "Device.WiFi.Radio.2.SupportedStandards",
 	);
 $model_name		= getStr("Device.DeviceInfo.ModelName");
-$isDeviceCBR 	= ($model_name == "CGA4131COM")||($model_name == "CGA4131");
+$isDeviceCBR 	= ($model_name == "CGA4131COM")||($model_name == "CGA4131")||($model_name == "CGA4332COM");
 $isDeviceBWG    = ($model_name == "DPC3939B") || ($model_name == "DPC3941B");
 if(($isDeviceCBR && ($id == 1 || $id == 2)) || ($isDeviceBWG && ($id == 1 || $id == 2))){
 	$wifi_param["RadiusServerIPAddr"]		= "Device.WiFi.AccessPoint.$id.Security.RadiusServerIPAddr";

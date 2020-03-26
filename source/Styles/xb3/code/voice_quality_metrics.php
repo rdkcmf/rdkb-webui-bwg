@@ -36,7 +36,7 @@ $line	= "1";
 $call	= "table";
 $action	= "display";
 $deviceType=getStr("Device.DeviceInfo.ModelName");
-if ($deviceType == "CGA4131COM")
+if (($deviceType == "CGA4131COM") || ($ModelName=="CGA4332COM"))
 {
     $LineNumberCount=8;
 }

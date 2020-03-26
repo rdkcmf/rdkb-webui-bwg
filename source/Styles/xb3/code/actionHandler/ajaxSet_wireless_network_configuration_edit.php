@@ -33,7 +33,7 @@ $arConfig = json_decode($jsConfig, true);
 
 //Model for CBR is CGA4131COM
 $model_name		= getStr("Device.DeviceInfo.ModelName");
-$isDeviceCBR 	= ($model_name == "CGA4131COM");
+$isDeviceCBR 	= (($model_name == "CGA4131COM") || ($model_name == "CGA4332COM"));
 $isDeviceBWG    = ($model_name == "DPC3939B") || ($model_name == "DPC3941B");
 $thisUser = $arConfig['thisUser'];
 
