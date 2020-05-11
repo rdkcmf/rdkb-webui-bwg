@@ -855,7 +855,7 @@ function addslashes( str ) {
 
 function click_save()
 {
-	var network_name_1= '<?php echo $network_name; ?>';
+	var network_name_1= '<?php echo addslashes($network_name); ?>';
 	var password_mso_user = '<?php echo $password_mso_user; ?>';
 	var network_password = "";
 	var rf = "<?php echo $rf == 1? "": 1; ?>";
