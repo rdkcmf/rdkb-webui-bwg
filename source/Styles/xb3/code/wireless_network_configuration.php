@@ -1380,30 +1380,33 @@ function saveBandSteeringSettings()
 		$ssids_pub 		= explode(",", getInstanceIds("Device.WiFi.SSID."));
 		$public_v	= array();
 		$odd 		= true;
-
-		foreach ($ssids_pub as $i)
-		{
-			if (intval($i)<5 || intval($i)>6){		//SSID 1,2 for Private, 3,4 for Home Security, 5,6 for Hot Spot
-				continue;							// bypassing 3,4 for Home Security for Business Routers
+		$xfinityWiFi_enable = getStr("Device.DeviceInfo.X_COMCAST_COM_xfinitywifiEnable"); 
+		
+		if ($xfinityWiFi_enable != "false"){	                         //TCCBR-4817 - Show Public wifi names only if they enabled
+			foreach ($ssids_pub as $i)
+			{
+				if (intval($i)<5 || intval($i)>6){		//SSID 1,2 for Private, 3,4 for Home Security, 5,6 for Hot Spot
+					continue;							// bypassing 3,4 for Home Security for Business Routers
+				}
+				array_push($public_v, array(
+					'sufix'	=> (intval($i)==5 || intval($i)==6) ? "_public" : "",
+					'id'	=> $i,
+					'ssid'	=> $wifi_value['SSID_SSID'.$i],
+					'freq'	=> intval($i)%2 ? "2.4 GHz" : "5 GHz",
+					'bssid'	=> $wifi_value['SSID_BSSID'.$i],
+					'secur'	=> encrypt_map($wifi_value['ModeEnabled'.$i], $wifi_value['EncrypMethod'.$i])
+					));
 			}
-			array_push($public_v, array(
-				'sufix'	=> (intval($i)==5 || intval($i)==6) ? "_public" : "",
-				'id'	=> $i,
-				'ssid'	=> $wifi_value['SSID_SSID'.$i],
-				'freq'	=> intval($i)%2 ? "2.4 GHz" : "5 GHz",
-				'bssid'	=> $wifi_value['SSID_BSSID'.$i],
-				'secur'	=> encrypt_map($wifi_value['ModeEnabled'.$i], $wifi_value['EncrypMethod'.$i])
-				));
-		}
 
-		for ($j=0; $j<count($public_v); $j++)
-		{
-			echo '<tr class="'.(($odd=!$odd)?"odd":"even").'">';
-			echo 	'<td headers="public-Name"><b><font color="black">'.$public_v[$j]['ssid'].'</font></b> </td>';
-			echo 	'<td headers="public-Frequency">'.$public_v[$j]['freq'].'</td>';
-			echo 	'<td headers="public-MAC">'.$public_v[$j]['bssid'].'</td>';
-			echo 	'<td headers="public-Security">'.$public_v[$j]['secur'].'</td>';
-			echo '</tr>';
+			for ($j=0; $j<count($public_v); $j++)
+			{
+				echo '<tr class="'.(($odd=!$odd)?"odd":"even").'">';
+				echo 	'<td headers="public-Name"><b><font color="black">'.$public_v[$j]['ssid'].'</font></b> </td>';
+				echo 	'<td headers="public-Frequency">'.$public_v[$j]['freq'].'</td>';
+				echo 	'<td headers="public-MAC">'.$public_v[$j]['bssid'].'</td>';
+				echo 	'<td headers="public-Security">'.$public_v[$j]['secur'].'</td>';
+				echo '</tr>';
+			}
 		}
 		?>
 		</tbody>
