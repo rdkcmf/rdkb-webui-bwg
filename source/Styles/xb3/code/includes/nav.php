@@ -44,7 +44,6 @@ $init_setup		= TRUE;  //for mso only
 $dynamic_dns        	= TRUE;  //for mso/cusadmin
 $nat		        = TRUE;  //for mso/cusadmin
 $password_change	= FALSE;  //for admin only
-$wizard        		= TRUE;
 $isCusadmin 		= FALSE;
 $advanced_tab		= TRUE;
 $wan_static			= TRUE;//for mso only
@@ -73,7 +72,6 @@ if (isset($_SESSION['lanMode']) && $_SESSION["lanMode"] != "router") {
 	$dmz              	= FALSE;
 	$port_forwarding  	= FALSE;
 	$port_triggering  	= FALSE;
-	$wizard		 		= FALSE;
 	$MoCA              	= FALSE;
         $wifi_spec_analyzer 	= FALSE;
 }
@@ -144,10 +142,6 @@ echo '<li class="nav-gateway">';
 		echo '<li class="nav-wifi"><a role="menuitem"  href="wifi.php">Wireless</a></li>';
 		echo '</ul>';
 	echo '</li>';
-	if($wizard){
-		if($password_change) echo '<li class="nav-wizard"><a role="menuitem"  href="wizard_step1.php">Wizard</a></li>';
-		else echo '<li class="nav-wizard"><a role="menuitem"  href="wizard_step2.php">Wizard</a></li>';
-	}
 	echo '</ul>';
 echo '</li>';
 
