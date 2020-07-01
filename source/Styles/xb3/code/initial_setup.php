@@ -239,19 +239,7 @@ $(document).ready(function() {
 			ipv4_gateway_address_4: {
 				required: true,
 				min: 1,
-				max: function(){
-					/*[10.0.0.1 ~ 10.255.255.254,
-					172.16.0.1 ~ 172.31.255.254,
-					192.168.0.1 ~ 192.168.255.254]*/
-					var adrs_1 = $('#ipv4_gateway_address_1').val();
-					var adrs_2 = $('#ipv4_gateway_address_2').val();
-					var adrs_3 = $('#ipv4_gateway_address_3').val();
-					if((adrs_1 == '10'  && adrs_2 == '255' && adrs_3 == '255') ||
-						(adrs_1 == '172' && adrs_2 == '31'  && adrs_3 == '255') ||
-						(adrs_1 == '192' && adrs_2 == '168' && adrs_3 == '255')
-					) return 253;
-					else return 254;
-				},
+				max: 253,
 				digits: true
 			}
 			,ipv4_dhcp_beginning_address_2: {
@@ -602,7 +590,7 @@ $('#submit_ipv4').click(function(e){
     var gw_ip2 = parseInt($('#ipv4_gateway_address_2').val());
     var gw_ip3 = parseInt($('#ipv4_gateway_address_3').val());
      if( ((gw_ip1 != 10) && (gw_ip1 != 172) && (gw_ip1 != 192)) || ((gw_ip1 == 172) && ((gw_ip2<16) || (gw_ip2>31)))  || ((gw_ip1== 192) && ((gw_ip2 != 168) || (gw_ip3== 147)) ) ){
-		jAlert("Gateway IP is not in valid private IP range\n [10.0.0.1 ~ 10.255.255.253,\n172.16.0.1 ~ 172.31.255.254,\n192.168.0.1 ~ 192.168.146.254,\n192.168.148.1 ~ 192.168.255.254]");
+		jAlert("Gateway IP is not in valid private IP range\n [10.0.0.1 ~ 10.255.255.253,\n172.16.0.1 ~ 172.31.255.253,\n192.168.0.1 ~ 192.168.146.253,\n192.168.148.1 ~ 192.168.255.253]");
     	return;
     }
     if ((gw_ip1==172) && (gw_ip2==16) && (gw_ip3==12)) {
