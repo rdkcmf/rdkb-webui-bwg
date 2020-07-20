@@ -1821,37 +1821,37 @@ function saveBandSteeringSettings()
 	<h2>Band Steering</h2>
 	<div class="form-row ">
 		<label for="BS_disabled">Enable:</label>
-		<input type="radio"  name="BS" value="disabled" id="BS_disabled" checked="checked" disabled/><b>Disable</b>
+		<input type="radio"  name="BS" value="disabled" id="BS_disabled" checked="checked" /><b>Disable</b>
 		<label for="BS_enabled" class="acs-hide"></label>
-		<input type="radio"  name="BS" value="enabled"  id="BS_enabled" <?php if ("true"==$BandSteeringEnable) echo 'checked="checked"';?> disabled /><b>Enable</b>
+		<input type="radio"  name="BS" value="enabled"  id="BS_enabled" <?php if ("true"==$BandSteeringEnable) echo 'checked="checked"';?>  /><b>Enable</b>
 	</div>
 	<div class="form-row odd">
 		<label for="BS_Logging">Logging:</label>
-		<input type="button" id="BS_Logging" value="Steering History" class="btn" onclick="steering_history()" disabled/>
+		<input type="button" id="BS_Logging" value="Steering History" class="btn" onclick="steering_history()" />
 	</div>
 	<div class="form-row ">
 		<label for="BS_Logging">Utilzation Threshold(2.4 GHz):</label>
-		<input type="text" id="UtilzThreshold1" value="<?php echo $UtilzThreshold1; ?>" disabled/>
+		<input type="text" id="UtilzThreshold1" value="<?php echo $UtilzThreshold1; ?>" />
 	</div>
 	<div class="form-row odd">
 		<label for="BS_Logging">RSSI Threshold(2.4 GHz):</label>
-		<input type="text" id="RSSIThreshold1" value="<?php echo $RSSIThreshold1; ?>" disabled/>
+		<input type="text" id="RSSIThreshold1" value="<?php echo $RSSIThreshold1; ?>" />
 	</div>
 	<div class="form-row ">
 		<label for="BS_Logging">Physical Rate Threshold(2.4 GHz):</label>
-		<input type="text" id="PhyRateThreshold1" value="<?php echo $PhyRateThreshold1; ?>" disabled/>
+		<input type="text" id="PhyRateThreshold1" value="<?php echo $PhyRateThreshold1; ?>" />
 	</div>
 	<div class="form-row odd">
 		<label for="BS_Logging">Utilzation Threshold(5 GHz):</label>
-		<input type="text" id="UtilzThreshold2" value="<?php echo $UtilzThreshold2; ?>" disabled/>
+		<input type="text" id="UtilzThreshold2" value="<?php echo $UtilzThreshold2; ?>" />
 	</div>
 	<div class="form-row ">
 		<label for="BS_Logging">RSSI Threshold(5 GHz):</label>
-		<input type="text" id="RSSIThreshold2" value="<?php echo $RSSIThreshold2; ?>" disabled/>
+		<input type="text" id="RSSIThreshold2" value="<?php echo $RSSIThreshold2; ?>" />
 	</div>
 	<div class="form-row odd">
 		<label for="BS_Logging">Physical Rate Threshold(5 GHz):</label>
-		<input type="text" id="PhyRateThreshold2" value="<?php echo $PhyRateThreshold2; ?>" disabled/>
+		<input type="text" id="PhyRateThreshold2" value="<?php echo $PhyRateThreshold2; ?>" />
 	</div>
 	<div class="form-row " id="band_steering_history_content" class="content_message" style="display: none;">
 	
@@ -1869,7 +1869,7 @@ function saveBandSteeringSettings()
 	<div class="form-row "> 
 		<div class="form-btn">
 		<label for="save_steering" class="acs-hide"></label>
-			<input type="submit" id="save_steering" value="Save Band Steering Settings" class="btn" onclick="saveBandSteeringSettings();" disabled/>
+			<input type="submit" id="save_steering" value="Save Band Steering Settings" class="btn" onclick="saveBandSteeringSettings();" />
 		</div>
 	</div>
 </div>
