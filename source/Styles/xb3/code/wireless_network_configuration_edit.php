@@ -77,6 +77,7 @@ $wifi_param = array(
 	"DefaultKeyPassphrase"	=> "Device.WiFi.AccessPoint.$id.Security.X_COMCAST-COM_DefaultKeyPassphrase",
 	"AccessPoint_4_Enable"	=> "Device.WiFi.AccessPoint.4.Enable",
 	"Radio_".$rf."_Enable"	=> "Device.WiFi.Radio.$rf.Enable",
+	"1_SupportedStandards"	=> "Device.WiFi.Radio.1.SupportedStandards",
 	"2_SupportedStandards"	=> "Device.WiFi.Radio.2.SupportedStandards",
 	);
 $model_name		= getStr("Device.DeviceInfo.ModelName");
@@ -144,6 +145,7 @@ if ("false" == $wifi_value['Radio_'.$rf.'_Enable']){
 }
 
 //check if support 802.11ac
+$support_mode_2g		= $wifi_value['1_SupportedStandards'];
 $support_mode_5g		= $wifi_value['2_SupportedStandards'];
 
 /*if ($_SESSION['_DEBUG']){
@@ -231,7 +233,7 @@ function showDialog() {
 	});
 	
 	//disable wep if 11n
-	if ("n"==$("#wireless_mode").val() || "n,ac"==$("#wireless_mode").val() || "a,n,ac"==$("#wireless_mode").val() || "g,n"==$("#wireless_mode").val() || "b,g,n"==$("#wireless_mode").val()) {
+	if ("n"==$("#wireless_mode").val() || "n,ac"==$("#wireless_mode").val() || "a,n"==$("#wireless_mode").val() || "a,n,ac"==$("#wireless_mode").val() || "a,n,ac,ax"==$("#wireless_mode").val() || "g,n"==$("#wireless_mode").val() || "b,g,n"==$("#wireless_mode").val() || "g,n,ax"==$("#wireless_mode").val()) {
 		$("#pop_dialog").find("[value='WEP_64'],[value='WEP_128']").prop("disabled", true);
 	}
 	else {
@@ -467,7 +469,7 @@ $(document).ready(function() {
 	
 	$("#wireless_mode").change(function() {
 		// ONLY deal WEP for UI-4.0
-		if ("n"==$("#wireless_mode").val() || "n,ac"==$("#wireless_mode").val() || "a,n,ac"==$("#wireless_mode").val() || "g,n"==$("#wireless_mode").val() || "b,g,n"==$("#wireless_mode").val()) {
+		if ("n"==$("#wireless_mode").val() || "n,ac"==$("#wireless_mode").val() || "a,n"==$("#wireless_mode").val() || "a,n,ac"==$("#wireless_mode").val() || "a,n,ac,ax"==$("#wireless_mode").val() || "g,n"==$("#wireless_mode").val() || "g,n,ax"==$("#wireless_mode").val()) {
 			if ($("#security").val()=="WEP_64" || $("#security").val()=="WEP_128"){
 				$("#security").val("WPAWPA2_PSK_TKIPAES");
 			}
@@ -496,6 +498,10 @@ $(document).ready(function() {
 			else if ($("#channel_bandwidth2").prop("checked")) {
 				$("#channel_number").find("[value='116'],[value='120'],[value='124'],[value='128'],[value='132'],[value='136'],[value='140'],[value='144'],[value='165']").prop("disabled", true).prop("selected", false);			
 			}
+                        //160MHz
+                        else if ($("#channel_bandwidth3").prop("checked")) {
+                                $("#channel_number").find("[value='132'],[value='136'],[value='140'],[value='144'],[value='149'],[value='153'],[value='157'],[value='161'],[value='165']").prop("disabled", true).prop("selected", false);
+                        }
 			// NOT 20MHz, disable channel 165
 			$("#channel_number").find("[value='165']").prop("disabled", true).prop("selected", false);
 		}
@@ -975,21 +981,33 @@ function setResetInfo(info) {
 			<?php
 				//zqiu: add "selected"
 				if ("5"==$radio_band){
-					if (strstr($support_mode_5g, "ac")){
-						echo '<option value="ac" ';     echo (    "ac"==$wireless_mode)? 'selected':''; echo'>802.11 ac</option>';
-						echo '<option value="n,ac" ';   echo (  "n,ac"==$wireless_mode)? 'selected':''; echo'>802.11 n/ac</option>';
+					if (strstr($support_mode_5g, "ax")){
 						echo '<option value="a,n,ac" '; echo ("a,n,ac"==$wireless_mode)? 'selected':''; echo'>802.11 a/n/ac</option>';
-						echo '<option value="n" ';      echo (     "n"==$wireless_mode)? 'selected':''; echo'>802.11 n</option>';
+						echo '<option value="a,n,ac,ax" '; echo ("a,n,ac,ax"==$wireless_mode)? 'selected':''; echo'>802.11 a/n/ac/ax</option>';
+					}
+					else if (strstr($support_mode_5g, "ac")){
+						echo '<option value="n" ';     echo (    "n"==$wireless_mode)? 'selected':''; echo'>802.11 n</option>';
+						echo '<option value="ac" '; echo ("ac"==$wireless_mode)? 'selected':''; echo'>802.11 ac</option>';
+						echo '<option value="n,ac" '; echo ("n,ac"==$wireless_mode)? 'selected':''; echo'>802.11 n/ac</option>';
+						echo '<option value="a,n,ac" '; echo ("a,n,ac"==$wireless_mode)? 'selected':''; echo'>802.11 a/n/ac</option>';
 					}
 					else {
-						echo '<option value="n" '   ; echo (     "n"==$wireless_mode)? 'selected':''; echo'>802.11 n</option>';
-						echo '<option value="a,n" ' ; echo (     "a,n"==$wireless_mode)? 'selected':''; echo'>802.11 a/n</option>';
-					}
+						echo '<option value="n" ';     echo (    "n"==$wireless_mode)? 'selected':''; echo'>802.11 n</option>';
+						echo '<option value="a,n" ';   echo (  "a,n"==$wireless_mode)? 'selected':''; echo'>802.11 a/n</option>';
+					}				
 				}
 				else {
-					//echo '<option value="n" ';     echo (    "n"==$wireless_mode)? 'selected':'';  echo '>802.11 n</option>';
-					echo '<option value="g,n" ';   echo (  "g,n"==$wireless_mode)? 'selected':'';  echo'>802.11 g/n</option>';
-					echo '<option value="b,g,n" '; echo ("b,g,n"==$wireless_mode)? 'selected':'';  echo'>802.11 b/g/n</option>';
+					if (strstr($support_mode_2g, "ax")){
+						echo '<option value="g,n" ';   echo (  "g,n"==$wireless_mode)? 'selected':'';  echo'>802.11 g/n</option>';
+						echo '<option value="g,n,ax" '; echo ("g,n,ax"==$wireless_mode)? 'selected':''; echo'>802.11 g/n/ax</option>';
+					}
+					else
+					{
+						echo '<option value="n" ';     echo (    "n"==$wireless_mode)? 'selected':'';  echo '>802.11 n</option>';
+						echo '<option value="g,n" ';   echo (  "g,n"==$wireless_mode)? 'selected':'';  echo'>802.11 g/n</option>';
+						echo '<option value="b,g,n" '; echo ("b,g,n"==$wireless_mode)? 'selected':'';  echo'>802.11 b/g/n</option>'; 
+					}
+ 
 				}
 			?>
 			</select>
@@ -1056,15 +1074,22 @@ function setResetInfo(info) {
 		<?php } else { ?>
 			<label for="channel_bandwidth201">Channel Bandwidth:</label>
 			<input type="radio"  name="channel_bandwidth1" value="20MHz" id="channel_bandwidth201" checked="checked" /><b>20</b>
-			<?php if (strstr($support_mode_5g, "ac")){ ?>
+                        <?php if (strstr($support_mode_5g, "ax")){ ?>
+                                <label for="channel_bandwidth1" class="acs-hide"></label>
+                                <input type="radio"  name="channel_bandwidth1" value="40MHz"  id="channel_bandwidth1" <?php if ("40MHz"==$channel_bandwidth) echo 'checked="checked"';?> /><b>20/40</b>
+                                <label for="channel_bandwidth2" class="acs-hide"></label>
+                                <input type="radio"  name="channel_bandwidth1" value="80MHz"  id="channel_bandwidth2" <?php if ("80MHz"==$channel_bandwidth) echo 'checked="checked"';?> /><b>20/40/80</b>
+                                <label for="channel_bandwidth3" class="acs-hide"></label>
+                                <input type="radio"  name="channel_bandwidth1" value="160MHz"  id="channel_bandwidth3" <?php if ("160MHz"==$channel_bandwidth) echo 'checked="checked"';?> /><b>20/40/80/160</b>
+                        <?php } else if (strstr($support_mode_5g, "ac")){ ?>
+                                <label for="channel_bandwidth1" class="acs-hide"></label>
+                                <input type="radio"  name="channel_bandwidth1" value="40MHz"  id="channel_bandwidth1" <?php if ("40MHz"==$channel_bandwidth) echo 'checked="checked"';?> /><b>20/40</b>
+                                <label for="channel_bandwidth2" class="acs-hide"></label>
+                                <input type="radio"  name="channel_bandwidth1" value="80MHz"  id="channel_bandwidth2" <?php if ("80MHz"==$channel_bandwidth) echo 'checked="checked"';?> /><b>20/40/80</b>
+                        <?php } else { ?>
 				<label for="channel_bandwidth1" class="acs-hide"></label>
 				<input type="radio"  name="channel_bandwidth1" value="40MHz"  id="channel_bandwidth1" <?php if ("40MHz"==$channel_bandwidth) echo 'checked="checked"';?> /><b>20/40</b>
-				<label for="channel_bandwidth2" class="acs-hide"></label>
-				<input type="radio"  name="channel_bandwidth1" value="80MHz"  id="channel_bandwidth2" <?php if ("80MHz"==$channel_bandwidth) echo 'checked="checked"';?> /><b>20/40/80</b>
-			<?php } else{ ?>
-				<label for="channel_bandwidth1" class="acs-hide"></label>
-				<input type="radio"  name="channel_bandwidth1" value="40MHz"  id="channel_bandwidth1" <?php if ("40MHz"==$channel_bandwidth) echo 'checked="checked"';?> /><b>20/40</b>
-			<?php }	?>
+                        <?php }	?>
 		<?php } ?>
 		</div>
 		<div class="form-row" id="div_network_password">
