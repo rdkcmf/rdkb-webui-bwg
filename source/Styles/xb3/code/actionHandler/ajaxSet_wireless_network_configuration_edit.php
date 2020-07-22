@@ -36,10 +36,14 @@ $model_name		= getStr("Device.DeviceInfo.ModelName");
 $isDeviceCBR 	= (($model_name == "CGA4131COM") || ($model_name == "CGA4332COM"));
 $isDeviceBWG    = ($model_name == "DPC3939B") || ($model_name == "DPC3941B");
 $thisUser = $arConfig['thisUser'];
+$Radio_1_Support_Modes = getStr("Device.WiFi.Radio.1.SupportedStandards");
+$Radio_2_Support_Modes = getStr("Device.WiFi.Radio.2.SupportedStandards");
 
 /*********************************************************************************************/
 $i = $arConfig['ssid_number'];
 $r = (2 - intval($i)%2);	//1,3,5,7 == 1(2.4G); 2,4,6,8 == 2(5G)
+$frequency_band = getStr("Device.WiFi.Radio.$r.OperatingFrequencyBand");
+$radio_band     = (strstr($frequency_band,"5G")) ? "5" : "2.4";
 
 // this method for only restart a certain SSID
 function MiniApplySSID($ssid) {
@@ -67,9 +71,16 @@ if ("true" == getStr("Device.WiFi.Radio.$i.Enable")) {
 	//Remove XHS and XfinityWiFi SSID information pages from MSO and CUSADMIN GUIs (Commercial products)
 	else $validation = false;
 	if ("mso" != $thisUser){
-		if($validation) $validation = isValInArray($arConfig['channel_bandwidth'], array('20MHz', '40MHz', '80MHz'));
-		if($validation) $validation = (($r==1 && isValInArray($arConfig['wireless_mode'], array("n", "g,n", "b,g,n"))) || ($r==2 && isValInArray($arConfig['wireless_mode'], array("n", "a,n", "ac", "n,ac", "a,n,ac"))));
-		if ("false"==$arConfig['channel_automatic']){
+		if($validation) $validation = isValInArray($arConfig['channel_bandwidth'], array('20MHz', '40MHz', '80MHz', '160MHz'));
+		if (strstr($Radio_1_Support_Modes, "ax") && strstr($Radio_2_Support_Modes, "ax"))
+		{
+			if($validation) $validation = (($radio_band=="2.4" && isValInArray($arConfig['wireless_mode'], array("g,n", "g,n,ax"))) || ($radio_band=="5" && isValInArray($arConfig['wireless_mode'], array("a,n,ac", "a,n,ac,ax"))));
+		}
+		else
+		{
+			if($validation) $validation = (($radio_band=="2.4" && isValInArray($arConfig['wireless_mode'], array("n", "g,n", "b,g,n"))) || ($radio_band=="5" && isValInArray($arConfig['wireless_mode'], array("n", "a,n", "ac", "n,ac", "a,n,ac"))));
+		}
+               if ("false"==$arConfig['channel_automatic']){
 			$PossibleChannels = getStr("Device.WiFi.Radio.$r.PossibleChannels");
 			if(strpos($PossibleChannels, '-') !== false) {//1-11
 				$PossibleChannelsRange = explode('-', $PossibleChannels);
