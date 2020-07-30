@@ -802,6 +802,11 @@ $('#submit_ipv4').click(function(e){
 		jAlert("Gateway IP is not in valid private IP range\n [10.0.0.1 ~ 10.255.255.253,\n172.16.0.1 ~ 172.31.255.253,\n192.168.0.1 ~ 192.168.146.253,\n192.168.148.1 ~ 192.168.255.253]");
     	return;
     }
+    if (((gw_ip1==192) && (gw_ip2==168) && (gw_ip3==100))|| ((gw_ip1==172) && (gw_ip2==31))) {
+        jAlert("This IP address is reserved , please input again");
+        return;
+    }
+
     if ((gw_ip1==172) && (gw_ip2==16) && (gw_ip3==12)) {
     	jAlert("This IP address is reserved for Home Security, please input again");
     	return;
@@ -820,7 +825,6 @@ $('#submit_ipv4').click(function(e){
 	var CM_IP_Address = "<?php echo $CM_IP_Address;?>";
 	var WAN_GW_IPv4_Address = "<?php echo $WAN_GW_IPv4_Address;?>";
 	var LAN_GW_IPv4_Address = "<?php echo $LAN_GW_IPv4_Address;?>";
-
 	if(ipaddr == CM_GW_IP_Address){
 		jAlert("This IP address is reserved for CM Gateway IP Address, please input again!");
 	    	return;
