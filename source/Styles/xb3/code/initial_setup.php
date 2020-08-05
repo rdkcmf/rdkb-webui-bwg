@@ -829,35 +829,6 @@ function display_time_format(num){
 	}
 }
 
-//========enable/disable Lan DHCP server
-function saveConfig(configInfo) {
-	var str = 'Changing Gateway IP or any DHCP setting would reset the gateway.\n';
-	str += '\n';
-	str += '<b>WARNING</b>: Gateway will be rebooted!\n';
-	str += 'Incoming/Outgoing call and internet connection will be interrupted!';
-	jConfirm(
-	str
-	,"Are you sure?"
-	,function(ret) {
-		if(ret) {
-			jProgress("This may take several seconds.",60);
-				$.ajax({
-				type:"POST",
-				url:"actionHandler/ajaxSet_initial_setup.php",
-				data: eval('('+configInfo+')'),
-				success:function(){
-					jHide();
-					jProgress("Please wait for rebooting ...", 999999);
-					setTimeout(checkForRebooting, 4 * 60 * 1000);
-				},
-				error: function(){
-					jHide();
-					jAlert("Error! Please try later!");
-				}
-			});
-		}
-	});
-}
 
 function checkForRebooting() {
     $.ajax({
@@ -884,7 +855,20 @@ $('#Lan').click(function(){
 	else{
 		var configInfo = '{enableDHCP:"false"}';	
 	}
-	saveConfig(configInfo);
+	      jProgress("This may take several seconds.",60);
+				$.ajax({
+				type:"POST",
+				url:"actionHandler/ajaxSet_initial_setup.php",
+				data: eval('('+configInfo+')'),
+				success:function(){
+					jHide();
+                                        window.location.reload();
+				},
+				error: function(){
+					jHide();
+					jAlert("Error! Please try later!");
+				}
+			});
 });
 
 /*$('#DMZ').click(function(){

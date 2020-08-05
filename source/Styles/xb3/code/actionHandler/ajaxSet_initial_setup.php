@@ -48,9 +48,9 @@ if (isset($_POST['enableDHCP'])) {
 	setStr("Device.DHCPv4.Server.Enable", $enableDHCP, true);
 	setStr("Device.DHCPv6.Server.Enable", $enableDHCP, true);
 
-	//reboot the CBR for change of any DHCP parameters from UI
-	setStr("Device.DeviceInfo.X_RDKCENTRAL-COM_UI_ACCESS","reboot_device",true);
-	setStr("Device.X_CISCO_COM_DeviceControl.RebootDevice", "Device",true);
+	//reboot not required when enabling/disabling DHCP without changing the parameters of DHCP
+	//setStr("Device.DeviceInfo.X_RDKCENTRAL-COM_UI_ACCESS","reboot_device",true);
+	//setStr("Device.X_CISCO_COM_DeviceControl.RebootDevice", "Device",true);
 
 	return; //stop processing
 }
