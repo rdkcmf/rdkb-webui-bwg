@@ -407,8 +407,7 @@ function local_to_UTC_Time($localTime, $blockedDays){
 	$timeChangeNeg = ($utcTime < 0);
 	$timeChangeEqu = ($utcTime == (24*60*60));
 	$utcTime = ($timeChangePos)?($utcTime - (24*60*60)):$utcTime;
-	$utcTime = ($timeChangeNeg)?($utcTime + (24*60*60)):$utcTime;
-	$utcTime = ($timeChangeEqu)?($utcTime - 1):$utcTime;	
+	$utcTime = ($timeChangeNeg)?($utcTime + (24*60*60)):$utcTime;	
 	if($timeChangePos)	$blockedDays = shift_blockedDays($blockedDays, true);
 	if($timeChangeNeg)	$blockedDays = shift_blockedDays($blockedDays, false);
 	return array(sec_to_hm($utcTime), $blockedDays, ($timeChangePos || $timeChangeNeg));
