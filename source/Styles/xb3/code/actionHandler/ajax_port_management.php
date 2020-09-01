@@ -93,6 +93,9 @@ try {
 
 	if ($opType === 'edit') {
 		/* editing a rule */
+                if(!($r_portStart >= 1 &&  $r_portEnd <= 65535 && filter_var($r_ipStart,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4) && filter_var($r_ipEnd,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4))){
+                       throw new Exception("Port Number or ip is not in the valid range");
+                }
 		$paramArray = 
 			array (
 				array($rootObjName.$r_id.".Name", "string", $r_appName),
@@ -124,6 +127,9 @@ try {
 		if (!in_array($addId, $idArr)) {
 			throw new Exception("Failed to add port management rule entry");
 		}
+                if(!($r_portStart >= 1 &&  $r_portEnd <= 65535 && filter_var($r_ipStart,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4) && filter_var($r_ipEnd,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4))){
+                       throw new Exception("Port Number or ip is not in the valid range");
+                }
 		$paramArray = 
 			array (
 				array($rootObjName.$addId.".Name", "string", $r_appName),
