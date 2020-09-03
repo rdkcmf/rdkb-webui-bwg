@@ -93,7 +93,7 @@ if(($isDeviceCBR && ($id == 1 || $id == 2)) || ($isDeviceBWG && ($id == 1 || $id
 $wifi_value = KeyExtGet("Device.WiFi.", $wifi_param);
 
 $radio_enable		= $wifi_value['radio_enable'];
-$network_name		= $wifi_value['network_name'];
+$network_name		= htmlspecialchars($wifi_value['network_name'], ENT_NOQUOTES, 'UTF-8');
 $wireless_mode		= $wifi_value['wireless_mode'];
 $encrypt_mode		= $wifi_value['encrypt_mode'];
 $encrypt_method		= $wifi_value['encrypt_method'];
@@ -967,7 +967,7 @@ function setResetInfo(info) {
 		</div>		
 		<div class="form-row _network_name">
 			<label for="network_name">Network Name (SSID):</label>
-			<input type="text" size="23" value="<?php echo htmlspecialchars($network_name);?>" id="network_name" name="network_name" class="text" />
+			<input type="text" size="23" value="<?php echo $network_name;?>" id="network_name" name="network_name" class="text" />
 		</div>
 		<div class="form-row odd" id="div_wireless_mode">
 			<label for="wireless_mode">Mode:</label>
