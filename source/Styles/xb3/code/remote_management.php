@@ -788,7 +788,7 @@ function remote_access_block(){
 });
 </script>
 <div id="content">
-	<h1>Advanced >Remote Management</h1>
+	<h1>Advanced > Remote Management</h1>
 	<div id="educational-tip">
         <p class="tip">Remote Management allows the gateway to be remotely accessed by a customer account representative to perform troubleshooting or maintenance.</p>
 	    <p class="hidden">Remote Management can be used via HTTPS.</p>
