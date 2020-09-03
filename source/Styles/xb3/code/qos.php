@@ -124,7 +124,7 @@ function set_config(jsConfig)
 </script>
 
 <div id="content">
-    <h1>Gateway > Connection >CallP/QoS </h1>
+    <h1>Gateway > Connection > CallP/QoS </h1>
     <div id="educational-tip">
 		<p class="tip">This Page shows CallP/QoS statistics of USG.</p>
     </div>

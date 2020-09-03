@@ -82,7 +82,7 @@ $(document).ready(function() {
 </script>
 
 <div id="content">
-	<h1>Gateway > Connection > MTA >SIP Packet Log</h1>
+	<h1>Gateway > Connection > MTA > SIP Packet Log</h1>
 	<div id="educational-tip">
 		<p class="tip">Information related to the SIP Packet Log.</p>
 	</div>
