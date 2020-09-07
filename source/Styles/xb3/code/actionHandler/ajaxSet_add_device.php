@@ -250,8 +250,8 @@ if( !array_key_exists('delFlag', $deviceInfo) ) {
                 * From edit device scenario: ReservedIP  ==> ReservedIP, only update static table entry, and host comments
                 */
                 setStr("Device.DHCPv4.Server.Pool.1.StaticAddress.$existIndex.Chaddr", $deviceInfo['macAddress'], false);
-                setStr("Device.DHCPv4.Server.Pool.1.StaticAddress.$existIndex.Yiaddr", $deviceInfo['reseverd_ipAddr'], false);
-                if(setStr("Device.DHCPv4.Server.Pool.1.StaticAddress.$existIndex.X_CISCO_COM_Comment", $deviceInfo['Comments'], true)){
+	        setStr("Device.DHCPv4.Server.Pool.1.StaticAddress.$existIndex.X_CISCO_COM_Comment", $deviceInfo['Comments'], true);
+                if(setStr("Device.DHCPv4.Server.Pool.1.StaticAddress.$existIndex.Yiaddr", $deviceInfo['reseverd_ipAddr'], true)){
                     $result = "success";
                 }
 
