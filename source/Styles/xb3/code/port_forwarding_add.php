@@ -268,6 +268,10 @@ function isIp4AddrRequired()
         		jAlert("Please input a service name !");
         		return;
         	}
+                else if(name.length > 63){
+                        jAlert("Service Name should be less than 64 characters !");
+                        return;
+                }
 			else if(name.match(/[<>&"'|]/)!=null){
         		jAlert('Please input valid Service Name ! \n Less than (<), Greater than (>), Ampersand (&), Double quote ("), \n Single quote (\') and Pipe (|) characters are not allowed.');
 				return;
