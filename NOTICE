@@ -50,8 +50,16 @@ lighttpd
 Copyright (c) 2004, Jan Kneschke, incremental
 Licensed under the BSD-3 license
 
-Copyright (c) 2007-2016 Kevin van Zonneveld (http://kvz.io) 
+Copyright (c) 2007-2016 Kevin van Zonneveld (http://kvz.io)
 and Contributors (http://locutus.io/authors)
 Licensed under the MIT license
 
 Some icons are generated from http://www.ajaxload.info and are licensed under the WTFPL license.
+
+This product includes PHP software, freely available from <http://www.php.net/software/>
+Copyright (c) 1999 - 2019 The PHP Group. All rights reserved.
+Licensed under the PHP License, version 3.01
+
+This component is using a configuration template of CSRF which is:
+Copyright 2014 OWASP Foundation
+Licensed under the Apache License, Version 2.0
