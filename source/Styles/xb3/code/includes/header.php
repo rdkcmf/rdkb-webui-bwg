@@ -35,10 +35,10 @@ csrfprotector_rdkb::init();
 		echo '<script type="text/javascript">alert("Please Login First!"); location.href="home_loggedout.php";</script>';
 		exit(0);
 	}
-	$not_cusadmin_pages = array('email_notification.php', 'routing.php', 'change_password.php', 'voice_quality_metrics' ,'qos', 'mta_Line_Diagnostics', 'mta_sip_packet_log', 'callsignallog.php', 'DSXlog.php', 'wan', 'dynamic_dns');
+	$not_cusadmin_pages = array('email_notification.php', 'routing.php', 'change_password.php', 'voice_quality_metrics' ,'qos', 'mta_Line_Diagnostics', 'mta_sip_packet_log', 'callsignallog.php', 'DSXlog.php', 'wan', 'dynamic_dns','wizard_step1','wizard_step2');
 	$not_admin_pages = array('email_notification.php', 'hs_port_forwarding', 'routing.php', 'dynamic_dns', 'mta', 'voice_quality_metrics' ,'qos');
 	$not_bridge_static_pages = array('local_ip','wizard', 'firewall', 'managed', 'parental', 'forwarding', 'triggering', 'dmz', 'routing');
-	$not_mso_pages = array('password_change.php','hs_port_forwarding','wizard_step1.php','qos1');
+	$not_mso_pages = array('password_change.php','hs_port_forwarding','wizard_step1.php','qos1','wizard_step2');
 
         if($modelName == "CGA4131COM" || $modelName == "CGA4332COM") {
              $not_mso_pages_tccbr = array('moca.php','moca_diagnostics.php');
