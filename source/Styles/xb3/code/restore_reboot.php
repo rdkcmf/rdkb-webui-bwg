@@ -256,9 +256,16 @@ function setResetInfo(info) {
 				setTimeout(checkForRebooting, 4 * 60 * 1000);
 			}
 			else if(data.wifi) {
-				jProgress("Restarting Wi-Fi radios in upto 90 seconds...", 120);
-				//we don't know if Wi-Fi is ready (eth client can restart wifi also), so just delay 90 seconds
-				setTimeout(function(){jHide();window.location.reload();}, 90 * 1000);
+                                var cnt = 90;
+                                jProgress('Restarting Wi-Fi radios. This may take up to <b id="cnt">' + cnt + '</b> seconds...', 120);
+                                //we don't know if Wi-Fi is ready (eth client can restart wifi also), so just delay 90 seconds
+                                 var hCnt = setInterval(function(){
+                                      $("#cnt").text(cnt--);
+                                      if (cnt < 0) {
+                                        clearInterval(hCnt); 
+                                        location.reload();
+                                       }
+                                      }, 1000);
 			}
 		},
 		error: function(){            
