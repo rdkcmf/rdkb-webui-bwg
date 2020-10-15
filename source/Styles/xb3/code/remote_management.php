@@ -26,6 +26,7 @@
 </div><!-- end #sub-header -->
 <?php include('includes/nav.php'); ?>
 <?php
+$modelName= getStr("Device.DeviceInfo.ModelName");
 $RemoteAccess_param = array(
 	"https_mode"	=> "Device.UserInterface.X_CISCO_COM_RemoteAccess.HttpsEnable",
 	"allow_type"	=> "Device.UserInterface.X_CISCO_COM_RemoteAccess.FromAnyIP",
@@ -1068,6 +1069,9 @@ function remote_access_block(){
 			<p> Note:This option will allow any computer on the Internet to access your network and may cause a security risk.</p>
 		</div>
 	</div>
+	<?php
+                if($modelName != "CGA4131COM"){
+        ?>
 	<div class="module forms div_global">
 		<h2>Global Management</h2>
 			<div class="form-row">
@@ -1075,6 +1079,9 @@ function remote_access_block(){
 				<span id="telnet1_switch"></span>
 			</div>
 	</div> <!-- end .module -->
+	<?php
+	}
+	?>
 	<div class="form-btn">
 		<input type="button" value="Save" class="btn" />
 	</div>
