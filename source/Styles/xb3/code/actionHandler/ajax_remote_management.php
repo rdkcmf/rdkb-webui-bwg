@@ -35,8 +35,11 @@ function array_trim($arr){
 	}
 	return $ret;
 }
+$modelName= getStr("Device.DeviceInfo.ModelName");
 $validation = true;
-if($validation) $validation = isValInArray($_POST['telnet'], array('true', 'false', 'notset'));
+if($modelName != "CGA4131COM"){
+	if($validation) $validation = isValInArray($_POST['telnet'], array('true', 'false', 'notset'));
+}
 //if($validation) $validation = isValInArray($_POST['ssh'], array('true', 'false', 'notset'));
 if($validation) $validation = isValInArray($_POST['allowtype'], array('true', 'false', 'notset'));
 if($validation)
