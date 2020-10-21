@@ -138,11 +138,6 @@ $(document).ready(function() {
       var blockMulticast	= $("#block_multicast").prop("checked");
       var blockPeer		= $("#block_peer").prop("checked");
       var blockIdent		= $("#block_ident").prop("checked");
-
-  		if ("Custom" == firewallLevel && $("#disable_firewall").prop("checked")){
-  			firewallLevel = "None";
-  		}
-
       var wanPing		= $("#wan_ping").prop("checked");
 
       var firewallCfg = '{"firewallLevel": "' + firewallLevel + '", "block_http": "' + blockHttp + '", "block_icmp": "' + blockIcmp +
@@ -202,7 +197,11 @@ $(document).ready(function() {
             $block_peer = $firewall_value["block_peer"];
             $block_ident = $firewall_value["block_ident"];
             $wan_ping = $firewall_value["wan_ping"];
-
+	    if(!strcasecmp("false", $block_http) && !strcasecmp("false",$block_icmp) && !strcasecmp("false",$block_multicast) && !strcasecmp("false",$block_peer) && !strcasecmp("false",$block_ident)){
+				$disable_firewall="true";
+			}else{
+				$disable_firewall="false";
+			}
 			//$SecurityLevel = getStr("Device.X_CISCO_COM_Security.Firewall.FirewallLevelV6");
 		?>
     <h2>Firewall Options</h2>
@@ -296,7 +295,7 @@ $(document).ready(function() {
 				<label for="block_ident">Block IDENT (port 113)</label><br />
 
 				<input class="target disabled" type="checkbox" id="disable_firewall" name="disable_firewall"
-				<?php if ( !strcasecmp("None", $SecurityLevel)) echo "checked"; ?>   />
+				<?php if ( !strcasecmp("true",$disable_firewall) && !strcasecmp("Custom", $SecurityLevel)) echo "checked"; ?>   />
 				<label for="disable_firewall">Disable entire firewall</label>
 				</p>
 				</div>
