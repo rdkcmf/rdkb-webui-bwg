@@ -84,12 +84,6 @@ $psmMode = $DeviceControl_value['psmMode'];
 
 if(!$isMSO) {
         setStr("Device.DeviceInfo.X_RDKCENTRAL-COM_UI_ACCESS","ui_access",true);
-	//If Cloud redirection is set, then everything through local GW should be redirected
-	if(!strcmp($Cloud_Enabled, "true"))	
-	{
-		header("Location: $Cloud_WebURL");
-		exit;
-	}
 
 	if(!strcmp($CaptivePortalEnable, "true")) {
 		if(!strcmp($CONFIGUREWIFI, "true")) {
