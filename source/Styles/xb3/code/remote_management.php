@@ -1070,7 +1070,7 @@ function remote_access_block(){
 		</div>
 	</div>
 	<?php
-                if($modelName != "CGA4131COM"){
+                if (($modelName != "CGA4131COM") && ($modelName != "CGA4332COM")) {
         ?>
 	<div class="module forms div_global">
 		<h2>Global Management</h2>
