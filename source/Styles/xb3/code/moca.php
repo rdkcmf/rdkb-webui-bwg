@@ -140,8 +140,7 @@ $(document).ready(function() {
 			var channel = $('#mode_option').val();
 			
 			var tf_channel;
-			if(channel%50 != 0) tf_channel = (channel - 1025)/25;
-			else tf_channel = (channel - 1000)/25;
+			tf_channel = (channel - 1000)/25;
 
 			$('[id^="tf_"]').prop("disabled", false).attr('checked', true);
 			$("#tf_"+tf_channel).prop("disabled", true).attr('checked', false);
@@ -167,8 +166,7 @@ $(document).ready(function() {
 		var channel = $('#mode_option').val();
 		
 		var tf_channel;
-		if(channel%50 != 0) tf_channel = (channel - 1025)/25;
-		else tf_channel = (channel - 1000)/25;
+		tf_channel = (channel - 1000)/25;
 
 		$('[id^="tf_"]').prop("disabled", false).attr('checked', true);
 		$("#tf_"+tf_channel).prop("disabled", true).attr('checked', false);
