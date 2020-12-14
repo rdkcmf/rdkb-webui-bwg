@@ -46,6 +46,12 @@ $enableZero = getStr("Device.X_CISCO_COM_DeviceControl.EnableZeroConfig");
 
 ?>
 
+<style>
+label{
+margin-right: 10px !important;
+}
+</style>
+
 <script type="text/javascript">
 $(document).ready(function() {
     comcast.page.init("Advanced > Device Discovery", "nav-device-discovery");

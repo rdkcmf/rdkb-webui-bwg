@@ -218,6 +218,17 @@ else{
 $password_mso_user = !(($id == 1 || $id == 2) && ($_SESSION["loginuser"] == "mso"));
 ?>
 
+<style>
+	.wirelessRadio,label[for="network_name"],label[for="security"],label[for="network_password"] {
+		margin-right: 14px !important;
+	
+	}
+
+	#tip_security_mode{
+margin-left:12px;}
+
+</style>
+
 <script type="text/javascript">
 
 function showDialog() {
@@ -968,7 +979,7 @@ function setResetInfo(info) {
 		<form action="#TBD" method="post" id="pageForm">
 		<h2><?php if ($id>2) echo "Public"; else echo "Private"; ?> Wi-Fi Network Configuration (<?php echo $radio_band; ?> GHz)</h2>
 		<div class="form-row odd">
-			<span class="readonlyLabel label">Wireless Network:</span>
+			<span class="readonlyLabel label wirelessRadio">Wireless Network:</span>
 			<span id="wireless_network_switch"></span>
 		</div>		
 		<div class="form-row _network_name">

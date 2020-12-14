@@ -39,6 +39,13 @@ $isManageEnabled = getStr("Device.X_Comcast_com_ParentalControl.ManagedSites.Ena
 	if ("" != $ret){echo $ret;	return;}
 ?>
 
+<style>
+        label[for="time_start_hour-1"], label[for="on"], label[for="time_end_hour-1"] ,label[for="time_start_hour-2"], label[for="time_end_hour-2"]{
+    margin-right: 10px;
+}
+
+</style>
+
 <script  type="text/javascript">
 
 $(document).ready(function() {

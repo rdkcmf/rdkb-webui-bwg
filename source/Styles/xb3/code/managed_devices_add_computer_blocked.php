@@ -47,6 +47,9 @@
     	max-width: 120px;
 	}
 
+label{
+		margin-right: 10px !important;
+	}
 </style>
 
 <script type="text/javascript">

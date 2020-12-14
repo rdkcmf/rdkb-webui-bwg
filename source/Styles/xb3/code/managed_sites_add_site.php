@@ -28,6 +28,12 @@
 
 <?php include('includes/nav.php'); ?>
 
+<style>
+        label[for="time_start_hour"], label[for="on"], label[for="time_end_hour"] {
+    margin-right: 10px;
+}
+</style>
+
 <script type="text/javascript">
 $(document).ready(function() {
     comcast.page.init("Content Control > Managed Sites > Add Blocked Domain", "nav-sites");

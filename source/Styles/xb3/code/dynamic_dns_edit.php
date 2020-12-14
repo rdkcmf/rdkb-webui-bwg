@@ -44,7 +44,14 @@
 	$hostname = $dns_value["hostname"];
 	
 ?>
-
+<style>
+        label{
+        margin-right: 10px !important;
+}
+label[for="Service_Provider"]{
+        width: 210px !important;
+}
+</style>
 <script type="text/javascript">
 $(document).ready(function() {
     comcast.page.init("Advanced > Dynamic DNS", "nav-Dynamic-dns");
