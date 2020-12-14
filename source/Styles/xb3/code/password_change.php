@@ -28,6 +28,12 @@
 
 <?php include('includes/nav.php'); ?>
 
+<style>
+label[for="verifyPassword"],label[for="userPassword"],label[for="oldPassword"]{
+margin-right: 10px !important;
+}
+</style>
+
 <script type="text/javascript">
 
 $(document).ready(function() {

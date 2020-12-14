@@ -28,6 +28,12 @@
 
 <?php include('includes/nav.php'); ?>
 
+<style>
+label{
+margin-right: 10px !important;
+}
+</style>
+
 <script type="text/javascript">
 $(document).ready(function() {
     comcast.page.init("Content Control > Managed Services > Add Blocked Service", "nav-services");
