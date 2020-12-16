@@ -56,6 +56,7 @@ $LanGwIP		= $device_ctrl_value["LanGwIP"];
 // dmcli eRT setv Device.DHCPv6.Server.Pool.1.X_RDKCENTRAL-COM_DNSServers string "2001:558:feed::1 2001:558:feed::2"
 $ipv4_dns_enable 	= getStr("Device.DHCPv4.Server.Pool.1.DNSServersEnabled");
 $ipv4_dns_server 	= getStr("Device.DHCPv4.Server.Pool.1.DNSServers");
+$SecWebUI               = getStr("Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.SecureWebUI.Enable");
 
 $ipv4_dns_enable_1	= $ipv4_dns_enable;
 $ipv4_dns_enable_2	= $ipv4_dns_enable;
@@ -1529,6 +1530,13 @@ $('#restore_ipv6').click(function(e) {
 			<div class="form-row odd" id="assign_dns_manually">
 				<?php
 					$checked= (($ipv4_dns_enable_1=="true") && ($ipv4_dns_enable_2=="true"))?"checked=checked":"";
+                                        if (!strcmp($SecWebUI, "true")) {
+                                            if ( ($ipv4_primary_dns=="0.0.0.0") || ($ipv4_primary_dns=="") ) {
+                                                if ( ($ipv4_secondary_dns=="0.0.0.0") || ($ipv4_secondary_dns=="") ) {
+                                                    $checked="";
+                                                }
+                                            }
+                                        }
 				?>
 				<input type="checkbox"  name="dns_manually" value="dns_manual_ipv4" id="dns_manual_ipv4" onclick="return disablevalipv4();" <?php echo $checked;?> />
 				<label for="DnsManual" class="acs-hide"></label> <b>Assign DNS Manually</b>
