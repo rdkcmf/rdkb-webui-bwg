@@ -410,9 +410,18 @@ $(document).ready(function() {
 							$("#network_password").prop("disabled", true);
 							restyle_div();
 						} else {
-							$("#network_password").prop("disabled", false);
+							var pass_val = $("#network_password").val();
+                                                        $("#div_network_password").show();
+                                                        $("#network_password").val(pass_val);
 							restyle_div();
 							$("#netPassword-footnote").text($("option:selected", $("#security")).attr("title"));
+							if(password_mso_user){
+								$("#div_password_show").show();
+								$("#network_password").prop("disabled", false);  
+							}else{
+								$("#div_change_password").show();
+								$("#network_password").prop("disabled", true);
+							}
 						}
 					} else {
 						$security_val = security_val;
@@ -437,6 +446,7 @@ $(document).ready(function() {
 					$("#network_password").val("");
 					$("#network_password").prop("disabled", true);
 					$("#div_change_password").show();
+					$("#div_password_show").hide();
 				}else{
 					$("#div_password_show").show();
 					$("#network_password").prop("disabled", false);
