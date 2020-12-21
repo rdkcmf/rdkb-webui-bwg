@@ -197,7 +197,7 @@ else if ($mode=="firewall"){
 	$fh=fopen("/var/tmp/troubleshooting_logs_".$mode."_".$timef.".txt","w+");
 
 	foreach ($firewallLog as $key=>$value){
-		fwrite($fh, $value["Des"].", ".$value["Count"]." Attemps, ".$value["time"]."\t".$value["Type"]."\r\n");
+		fwrite($fh, $value["Des"].", ".$value["Count"]." Attempts, ".$value["time"]."\t".$value["Type"]."\r\n");
 	}
 	fclose($fh);
 	
