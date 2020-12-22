@@ -1373,15 +1373,9 @@ function saveBandSteeringSettings()
 		<td headers="private-Blank"><a href="wireless_network_configuration_edit.php?id=2" class="btn">Edit</a></td>
 	</tr>
 	</table>
-<?php
-     if ($modelName != "CGA4332COM") {
-?>
 	<div class="btn-group" style="display: none;">
 		<a href="wireless_network_configuration_wps.php" class="btn">Add Wi-Fi Protected Setup (WPS) Client</a>
 	</div>
-<?php
-        }
-?>
 </div> <!-- end .module -->
 
 
@@ -2042,10 +2036,6 @@ function saveBandSteeringSettings()
 	</div>
 </div>			
 
-<?php
-     if ($modelName != "CGA4332COM") {
-?>
-
 <div class="module forms enable div_wps_setting wps_config">
 	<h2>Wi-Fi Client Setup Configuration(WPS)</h2>
 	<div class="form-row"><p>You must enable WPS to connect your device to this device</p></div>
@@ -2118,9 +2108,6 @@ function saveBandSteeringSettings()
 	</div>
 </div>
 </form>
-<?php
-        }
-?>
 </div><!-- end #content -->
 
 <?php include('includes/footer.php'); //sleep(3);?>
