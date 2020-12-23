@@ -860,7 +860,11 @@ $(document).ready(function() {
 
 //this part is to populate edit device info on each online private network host basis 
 for ($i=0; $i < $onlinePrivateNetworkHost['hostNum']; $i++) { 
-
+    
+    if(!isset($onlinePrivateNetworkHost["$i"]['IPv4Address']))
+    {
+        $onlinePrivateNetworkHost["$i"]['IPv4Address'] = "";
+    }
 	$ID      = $onlinePrivateNetworkHost["$i"]['instanceID'];
 	$AddrSrc = $onlinePrivateNetworkHost["$i"]['AddressSource'];
 
@@ -921,6 +925,10 @@ for ($i=0; $i < $onlinePrivateNetworkHost['hostNum']; $i++) {
 }
 //this part is to populate edit device info on each offline private network host basis
 for ($i=0; $i < $offlinePrivateNetworkHost['hostNum']; $i++) {
+        if(!isset($offlinePrivateNetworkHost["$i"]['IPv4Address'] ))
+        {
+            $offlinePrivateNetworkHost["$i"][''] = "IPv4Address";
+        }
         $ID      = $offlinePrivateNetworkHost["$i"]['instanceID'];
         $AddrSrc = $offlinePrivateNetworkHost["$i"]['AddressSource'];
         echo "
