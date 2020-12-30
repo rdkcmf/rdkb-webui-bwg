@@ -329,7 +329,7 @@ function onsave() {
 			data: postData,
 			success: function(data) {
 				jHide();
-				if (data.status != 'success') {
+                                if (data.status != 'success') {
 					var str = "Failed, please try again later.";
 					if (data.msg) {
 						str += '\nMessage: ' + data.msg;
@@ -337,6 +337,11 @@ function onsave() {
 					jAlert(str);
 					return;
 				}
+                                var msg = validateIpRange(data.ipstart,data.ipend);
+                                if(msg != '') {
+                                        jAlert(msg);
+                                        return;
+                                }
 				window.location.href = 'port_management.php';
 			},
 			error: function() {
