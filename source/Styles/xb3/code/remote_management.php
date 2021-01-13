@@ -793,7 +793,7 @@ function remote_access_block(){
 	<div id="educational-tip">
         <p class="tip">Remote Management allows the gateway to be remotely accessed by a customer account representative to perform troubleshooting or maintenance.</p>
 	    <p class="hidden">Remote Management can be used via HTTPS.</p>
-		<p class="hidden">Enable the HTTPS option and enter the value for HTTPS Port, then you can access your device from HTTPS. For example,if the WAN IP address is 11.22.11.22 and the HTTPS port number is 8181, then you would use https://11.22.11.22:8181</p>
+		<p class="hidden">Enable the HTTPS option and enter the value for HTTPS Port, then you can access your device from HTTPS. For example, if the WAN IP address is 11.22.11.22 and the HTTPS port number is 8181, then you would use https://11.22.11.22:8181</p>
 		<p class="hidden">Select whether you would like to have Remote Management open to all Internet IP Addresses, an Internet IP Address range, or a single Internet IP Address.</p>
 	</div>
 	<form method="" id="pageForm" action="">
@@ -1066,7 +1066,7 @@ function remote_access_block(){
 		<?php }
 		} ?>
 		<div>
-			<p> Note:This option will allow any computer on the Internet to access your network and may cause a security risk.</p>
+			<p> Note: This option will allow any computer on the Internet to access your network and may cause a security risk.</p>
 		</div>
 	</div>
 	<?php
