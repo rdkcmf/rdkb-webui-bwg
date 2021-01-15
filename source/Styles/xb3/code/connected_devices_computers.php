@@ -210,11 +210,11 @@ $(document).ready(function() {
             if (isDHCP){
                 if($(ipDHCP).val() == 'DHCP'){
            	  	//this initial value is DHCP, user is going to modify comments
-                    var editDevInfo = '{"UpdateComments": "true", "Comments": "'+ Comments +'", "hostName": "' + hostName + '", "macAddress": "' + macAddress + '", "reseverd_ipAddr": "' + reseverd_ipAddr + '"}';
+                    var editDevInfo = '{"UpdateComments": "true", "Comments": " '+ Comments +' ", "hostName": "' + hostName + '", "macAddress": "' + macAddress + '", "reseverd_ipAddr": "' + reseverd_ipAddr + '"}';
                 }
                 else{
 	                // this is to provide info to remove this device in the static addr list, REservedIP => DHCP
-	                var editDevInfo = '{"delFlag": "true", "Comments": "'+ Comments +'", "hostName": "' + hostName + '", "macAddress": "' + macAddress + '", "reseverd_ipAddr": "' + reseverd_ipAddr + '"}';
+	                var editDevInfo = '{"delFlag": "true", "Comments": " '+ Comments +' ", "hostName": "' + hostName + '", "macAddress": "' + macAddress + '", "reseverd_ipAddr": "' + reseverd_ipAddr + '"}';
                 }
             }
             else{
@@ -232,7 +232,7 @@ $(document).ready(function() {
 				}
 
 				// this is to provide info to edit REservedIP
-				var editDevInfo = '{"Comments": "'+ Comments +'", "hostName": "' + hostName + '", "macAddress": "' + macAddress + '", "reseverd_ipAddr": "' + reseverd_ipAddr + '"}';
+				var editDevInfo = '{"Comments": " '+ Comments +' ", "hostName": "' + hostName + '", "macAddress": "' + macAddress + '", "reseverd_ipAddr": "' + reseverd_ipAddr + '"}';
             } 
 
             //alert(editDevInfo);
@@ -306,11 +306,11 @@ $(document).ready(function() {
             if (isDHCP){
                 if($(ipDHCP).val() == 'DHCP'){
                         //this initial value is DHCP, user is going to modify comments
-                    var editDevInfo = '{"UpdateComments": "true", "Comments": "'+ Comments +'", "hostName": "' + hostName + '", "macAddress": "' + macAddress + '", "reseverd_ipAddr": "' + reseverd_ipAddr + '"}';
+                    var editDevInfo = '{"UpdateComments": "true", "Comments": " '+ Comments +' ", "hostName": "' + hostName + '", "macAddress": "' + macAddress + '", "reseverd_ipAddr": "' + reseverd_ipAddr + '"}';
                 }
                 else{
                         // this is to provide info to remove this device in the static addr list, REservedIP => DHCP
-                        var editDevInfo = '{"delFlag": "true", "Comments": "'+ Comments +'", "hostName": "' + hostName + '", "macAddress": "' + macAddress + '", "reseverd_ipAddr": "' + reseverd_ipAddr + '"}';
+                        var editDevInfo = '{"delFlag": "true", "Comments": " '+ Comments +' ", "hostName": "' + hostName + '", "macAddress": "' + macAddress + '", "reseverd_ipAddr": "' + reseverd_ipAddr + '"}';
                 }
             }
             else{
@@ -327,7 +327,7 @@ $(document).ready(function() {
                                         }
                                 }
                                 // this is to provide info to edit REservedIP
-                                var editDevInfo = '{"Comments": "'+ Comments +'", "hostName": "' + hostName + '", "macAddress": "' + macAddress + '", "reseverd_ipAddr": "' + reseverd_ipAddr + '"}';
+                                var editDevInfo = '{"Comments": " '+ Comments +' ", "hostName": "' + hostName + '", "macAddress": "' + macAddress + '", "reseverd_ipAddr": "' + reseverd_ipAddr + '"}';
             }
             //alert(editDevInfo);
             if($(".pageForm").valid()){
