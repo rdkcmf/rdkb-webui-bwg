@@ -120,7 +120,7 @@ $(document).ready(function() {
 	// only run once on init
 	if (false == jsEnableMD)
 	{
-		$('.main_content *').not(".radioswitch_cont, .radioswitch_cont *").addClass("disabled");
+		$('.module *').not(".radioswitch_cont, .radioswitch_cont *").addClass("disabled");
 		$("#allow_block_switch").radioswitch("doEnable", false);
 	}	
 
@@ -158,7 +158,7 @@ $(document).ready(function() {
 				if(isUMGDDisabled) {
 					// $("#allowed-devices").prop("disabled",true).addClass("disabled");
 					// $("#blocked-devices").prop("disabled",true).addClass("disabled");
-					$('.main_content *').not(".radioswitch_cont, .radioswitch_cont *").addClass("disabled");
+					$('.module *').not(".radioswitch_cont, .radioswitch_cont *").addClass("disabled");
 					$("#allow_block_switch").radioswitch("doEnable", false);
 				} else {
 					// $("#allowed-devices").prop("disabled",false).removeClass("disabled");
