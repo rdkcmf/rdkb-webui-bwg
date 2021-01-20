@@ -94,7 +94,7 @@ if ("true" == getStr("Device.WiFi.Radio.$i.Enable")) {
 		}
 		if($validation) $validation = (preg_match("/^[ -~]{8,63}$|^[a-fA-F0-9]{64}$/i", $arConfig['network_password'])==1);
 		$DefaultKeyPassphrase = getStr("Device.WiFi.AccessPoint.$i.Security.X_COMCAST-COM_DefaultKeyPassphrase");
-		if($validation && ($DefaultKeyPassphrase == $arConfig['network_password']) && ($arConfig['security'] != 'WPA2_Enterprise' && $arConfig['security'] != 'WPA_WPA2_Enterprise')) {
+		if($validation && ($DefaultKeyPassphrase == $arConfig['network_password']) && ($arConfig['security'] != 'None' && $arConfig['security'] != 'WPA2_Enterprise' && $arConfig['security'] != 'WPA_WPA2_Enterprise')) {
 			$validation = false;
 			$response_message = 'Please change Network Password !';
 		}
