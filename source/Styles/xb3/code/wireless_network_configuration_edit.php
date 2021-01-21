@@ -447,10 +447,12 @@ $(document).ready(function() {
 					$("#network_password").prop("disabled", true);
 					$("#div_change_password").show();
 					$("#div_password_show").hide();
+                                  	restyle_div();
 				}else{
 					$("#div_password_show").show();
 					$("#network_password").prop("disabled", false);
-					$("#div_change_password").hide();
+                                  	$("#div_change_password").hide();
+                                  	restyle_div();
 				}
 			}
 			$("#netPassword-footnote").text($("option:selected", $(this)).attr("title"));
@@ -1118,10 +1120,12 @@ function setResetInfo(info) {
 			<span id="password_field"><input type="password" size="23" id="network_password" name="network_password" class="text" value="<?php if($password_mso_user) echo htmlspecialchars($network_password); ?>" </span>
 			<p id="netPassword-footnote" class="footnote">8-16 characters. Letter and numbers only. No spaces. Case sensitive.</p>
 		</div>
+
 		<div class="form-row" id="div_change_password">
 			<label for="change_password">Change Password:</label>
 			<span class="checkbox"><input type="checkbox" id="password_check" name="password_check" /></span>
 		</div>
+
 		<div class="form-row odd" id="div_password_show">
 			<label for="password_show">Show Network Password:</label>
 			<span class="checkbox"><input type="checkbox" id="password_show" name="password_show" /></span>
