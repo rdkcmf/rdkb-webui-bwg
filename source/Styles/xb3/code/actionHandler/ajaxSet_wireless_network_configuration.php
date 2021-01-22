@@ -336,13 +336,13 @@ else if ("mac_ssid" == $arConfig['target'])
 	}
 	else
 	{
-		$id = array_filter(explode(",", getInstanceIds("Device.Hosts.Host.")));
+		$id = getStr("Device.Hosts.HostNumberOfEntries");
 		$rootObjName    = "Device.Hosts.Host.";
 		$paramNameArray = array("Device.Hosts.Host.");
 		$mapping_array  = array("Layer1Interface", "HostName", "PhysAddress");
 	
 		$actualTableInstance = getParaValues($rootObjName, $paramNameArray, $mapping_array);
-		for ($j=0; $j<count($id); $j++)
+		for ($j=0; $j<$id; $j++)
 		{
 			$host = explode(".", $actualTableInstance["$j"]["Layer1Interface"]);
 			// $host = explode(".", "Device.WiFi.SSID.1.");
