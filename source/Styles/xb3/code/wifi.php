@@ -41,6 +41,8 @@ $wifi_param = array(
 	"1_BSSID"	=> "Device.WiFi.SSID.1.BSSID",
 	"2_Enable"	=> "Device.WiFi.Radio.2.Enable",
 	"2_BSSID"	=> "Device.WiFi.SSID.2.BSSID",
+	"1_Status"      => "Device.WiFi.Radio.1.Status",
+        "2_Status"      => "Device.WiFi.Radio.2.Status",
 	"1_SSID"	=> "Device.WiFi.SSID.1.Enable",
 	"2_SSID"	=> "Device.WiFi.SSID.2.Enable",
 	//getStr
@@ -58,8 +60,8 @@ if ("Enabled" == $_SESSION["psmMode"])
 	$wifi_value['2_BSSID']	="";
 }
 
-$wifi_status1 = ($wifi_value['1_SSID'] == 'true') ? true : false ;
-$wifi_status2 = ($wifi_value['2_SSID'] == 'true') ? true : false ;
+$wifi_status1 = ($wifi_value['1_Status'] == 'Up') ? true : false ;
+$wifi_status2 = ($wifi_value['2_Status'] == 'Up') ? true : false ;
 
 function div_mod($n, $m)
 {
