@@ -828,9 +828,6 @@ function remote_access_block(){
 			Remote Management Address (IPv6): 		
 			<?php
 				/* Fiber devices use brlan0 ipv6 address */
-				if (get_wan_type() == "EPON") {
-					$fistUSif = getStr("com.cisco.spvtg.ccsp.pam.Helper.FirstDownstreamIpInterface");
-				}
 				$ids = explode(",", getInstanceIds($fistUSif."IPv6Address."));
 				foreach ($ids as $i){
 					$val = getStr($fistUSif."IPv6Address.$i.IPAddress");
