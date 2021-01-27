@@ -116,7 +116,8 @@
       "EncryptionMethod6"   => "Device.WiFi.AccessPoint.6.Security.X_CISCO_COM_EncryptionMethod",
       "OperatingStandards1" => "Device.WiFi.Radio.1.OperatingStandards",
       "OperatingStandards2" => "Device.WiFi.Radio.2.OperatingStandards",
-
+      "Status5" => "Device.WiFi.SSID.5.Status",
+      "Status6" => "Device.WiFi.SSID.6.Status",
     );
     $wifi_value = php_KeyExtGet("Device.WiFi.", $wifi_param);
     $device_ctrl_param = array(
@@ -142,6 +143,9 @@ $(document).ready(function() {
     var isBridge = "<?php echo $_SESSION["lanMode"]; ?>";
 
     if(isBridge != 'router'){
+	if(isBridge == "full-bridge-static"){
+                        $('.tr_hotspot *').addClass('disabled');
+        }
         $('.localIPNetwork *').addClass('disabled');
         $('.localBtn').click(function(e){
             e.preventDefault();
@@ -692,7 +696,7 @@ overflow-wrap: break-word;
 	
 		array_push($public_v, array(
 			'ssid_id'		=> $i,
-			'ssid_enable'	=> $wifi_value["Enable".$i],
+			'ssid_enable'	=> $wifi_value["Status".$i],
 			'ssid_name'		=> htmlspecialchars($wifi_value["SSID".$i], ENT_NOQUOTES, 'UTF-8'),
 			'xf_capable'	=> php_getstr("Device.DeviceInfo.X_COMCAST-COM_xfinitywifiCapableCPE"),
 			'time_last'		=> sec2dhms(php_getstr("Device.X_COMCAST-COM_GRE.Tunnel.1.LastChange")),	// 2.4G and 5G share one gre tunnel
