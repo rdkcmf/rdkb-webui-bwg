@@ -98,8 +98,8 @@ $(document).ready(function() {
     	var hostName = $('#host_name').val();
     	var macAddress = $('#mac_address').val();
     	var reseverd_ipAddr = $('#staticIPAddress').val();
-    	var Comments = $('#comments').val();      
-
+   	var Comments = $('#comments').val();      
+	Comments=Comments.replace(/[\r\n]+/gm, "@" );
 		//to check if "Reserved IP Address" is in "DHCP Pool range"
 		var reseverd_ipArr	= reseverd_ipAddr.split(".");
 		for(i=0;i<4;i++){
