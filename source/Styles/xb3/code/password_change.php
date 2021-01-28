@@ -138,6 +138,8 @@ function next_step()
 	if (oldPwd == newPwd)
 	{
 		jAlert("Current Password and New Password Can't Be Same!");
+	}else if(newPwd == "highspeed"){
+		jAlert("Default password cannot be set as password");
 	}
 	else
 	{
