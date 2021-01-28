@@ -201,7 +201,7 @@ $(document).ready(function() {
             var reseverd_ipAddr = $(staticIPAddr).val();
             var isDHCP = $(ipDHCP).is(":checked");
             var Comments = $(comment).val();
-
+	    Comments=Comments.replace(/[\r\n]+/gm, "@" );	
             if (Comments.length > 63) {
                 jAlert("The comments should be no more than 63 characters !");
                 return;
@@ -303,6 +303,7 @@ $(document).ready(function() {
             var reseverd_ipAddr = $(staticIPAddr).val();
             var isDHCP = $(ipDHCP).is(":checked");
             var Comments = $(comment).val();
+	    Comments=Comments.replace(/[\r\n]+/gm, "@" );
             if (isDHCP){
                 if($(ipDHCP).val() == 'DHCP'){
                         //this initial value is DHCP, user is going to modify comments
@@ -630,7 +631,12 @@ $(document).ready(function() {
      
     <?php 
     	for($x=0,$k=1; $x<$onlinePrivateNetworkHost['hostNum']; $x++,$k++)
-        { 
+        {
+		$commentsOnline1= $onlinePrivateNetworkHost["$x"]['Comments'];
+		$commentsOnline1=trim($commentsOnline1);
+		if(preg_match_all("/@/",$commentsOnline1)){
+  		        $commentsOnline1=preg_replace("/@/","<br/>",$commentsOnline1);
+ 		} 
          	$dev_name = $onlinePrivateNetworkHost["$x"]['HostName'];
          	$mac_addr = $onlinePrivateNetworkHost["$x"]['PhysAddress'];
          	$AddrSrc  = $onlinePrivateNetworkHost["$x"]['AddressSource'];
@@ -652,7 +658,7 @@ $(document).ready(function() {
 						if ($onlinePrivateNetworkHost["$x"]['IPv6Address1'] != '') {echo "<dd><b>Local Link IPV6 Address</b><br/>", $onlinePrivateNetworkHost["$x"]['IPv6Address1'] , "</dd>";}
 
 						echo    "<dd><b>MAC Address</b><br/>", $onlinePrivateNetworkHost["$x"]['PhysAddress'] , "</dd>
-							<dd><b>Comments</b><br/>", $onlinePrivateNetworkHost["$x"]['Comments'] , "</dd>
+							<dd><b>Comments</b><br/>", $commentsOnline1 , "</dd>
 						</dl>
 					</div>
                 </td>
@@ -700,6 +706,11 @@ $(document).ready(function() {
 
     for($x=0,$k=1; $x<$offlinePrivateNetworkHost['hostNum']; $x++,$k++)
     { 
+	$commentsOffline1=  $offlinePrivateNetworkHost["$x"]['Comments'];
+	$commentsOffline1=trim($commentsOffline1);
+	if(preg_match_all("/@/",$commentsOffline1)){
+          	$commentsOffline1=preg_replace("/@/","<br/>",$commentsOffline1);
+ 	}
     	$dev_name = $offlinePrivateNetworkHost["$x"]['HostName'];
     	$mac_addr = $offlinePrivateNetworkHost["$x"]['PhysAddress'];
     	$AddrSrc  = $offlinePrivateNetworkHost["$x"]['AddressSource'];
@@ -721,7 +732,7 @@ $(document).ready(function() {
 						if ($offlinePrivateNetworkHost["$x"]['IPv6Address1'] != '') {echo "<dd><b>Local Link IPV6 Address</b><br/>", $offlinePrivateNetworkHost["$x"]['IPv6Address1'] , "</dd>";}
 
 						echo    "<dd><b>MAC Address</b><br/>", $offlinePrivateNetworkHost["$x"]['PhysAddress'] , "</dd>
-						<dd><b>Comments</b><br/>", $offlinePrivateNetworkHost["$x"]['Comments'] , "</dd>
+						<dd><b>Comments</b><br/>", $commentsOffline1 , "</dd>
 					</dl>
 				</div>
             </td>
@@ -861,7 +872,11 @@ $(document).ready(function() {
 
 //this part is to populate edit device info on each online private network host basis 
 for ($i=0; $i < $onlinePrivateNetworkHost['hostNum']; $i++) { 
-    
+    $commentsOnline2= $onlinePrivateNetworkHost["$i"]['Comments'];
+    $commentsOnline2=trim($commentsOnline2);	
+    if(preg_match_all("/@/",$commentsOnline2)){
+          $commentsOnline2=preg_replace("/@/","\n",$commentsOnline2);
+ }	
     if(!isset($onlinePrivateNetworkHost["$i"]['IPv4Address']))
     {
         $onlinePrivateNetworkHost["$i"]['IPv4Address'] = "";
@@ -910,7 +925,7 @@ for ($i=0; $i < $onlinePrivateNetworkHost['hostNum']; $i++) {
 			</div>
 			<div  class=\"form-row\">
 				<label for=\"comment-" .$ID. "\" >Comments:</label>
-		        <textarea id=\"comment-" .$ID. "\" name=\"comments\" ros=\"6\" cols=\"18\" maxlength=\"63\">". $onlinePrivateNetworkHost["$i"]['Comments'] ."</textarea>
+		        <textarea id=\"comment-" .$ID. "\" name=\"comments\" ros=\"6\" cols=\"18\" maxlength=\"63\">". $commentsOnline2 ."</textarea>
 			</div>
 
 			<div  class=\"form-row form-btn\">
@@ -926,6 +941,11 @@ for ($i=0; $i < $onlinePrivateNetworkHost['hostNum']; $i++) {
 }
 //this part is to populate edit device info on each offline private network host basis
 for ($i=0; $i < $offlinePrivateNetworkHost['hostNum']; $i++) {
+	$commentOffline2=$offlinePrivateNetworkHost["$i"]["Comments"];
+	$commentOffline2=trim($commentOffline2);
+	if(preg_match_all("/@/",$commentOffline2)){
+          	$commentOffline2=preg_replace("/@/","\n",$commentOffline2);
+	 }
         if(!isset($offlinePrivateNetworkHost["$i"]['IPv4Address'] ))
         {
             $offlinePrivateNetworkHost["$i"][''] = "IPv4Address";
@@ -970,7 +990,7 @@ for ($i=0; $i < $offlinePrivateNetworkHost['hostNum']; $i++) {
                         </div>
                         <div  class=\"form-row\">
                                 <label for=\"comment-" .$ID. "\" >"._('Comments:')."</label>
-                        <textarea id=\"comment-" .$ID. "\" name=\"comments\" ros=\"6\" cols=\"18\" maxlength=\"63\">". $offlinePrivateNetworkHost["$i"]['Comments'] ."</textarea>
+                        <textarea id=\"comment-" .$ID. "\" name=\"comments\" ros=\"6\" cols=\"18\" maxlength=\"63\">". $commentOffline2 ."</textarea>
                         </div>
                         <div  class=\"form-row form-btn\">
                                 <input type=\"button\" id=\"submit_editDevice-" .$ID. "\"  class=\"btn\" value=\""._("Save")."\"/>
