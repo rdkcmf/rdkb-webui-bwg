@@ -31,7 +31,12 @@
 <?php 
 $PFEnable = getStr("Device.NAT.X_Comcast_com_EnablePortMapping");
 ?>
+<style>
 
+	table td {
+		white-space: pre;
+	}
+</style>
 <script type="text/javascript">
 $(document).ready(function() {
 	comcast.page.init("Advanced > Port Forwarding", "nav-port-forwarding");
