@@ -46,7 +46,12 @@ $ruleType = getStr($baseObjName.'RuleType');
 }*/
 
 ?>
+<style>
 
+	table td {
+		white-space: pre;
+	}
+</style>
 <script type="text/javascript">
 var o_pmEnabled = <?php echo $pmEnabled ? 'true' : 'false'; ?>;
 var o_ruleType = "<?php echo $ruleType; ?>";
