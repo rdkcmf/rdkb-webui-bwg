@@ -1046,7 +1046,7 @@ function setResetInfo(info) {
 				<option value="WPA2_PSK_TKIP" 		title="WPA requires an 8-63 ASCII character or a 64 hex character password. Hex means only the following characters can be used: ABCDEF0123456789." <?php if ("WPA2_PSK_TKIP"==$security)       echo "selected";?> >WPA2-PSK (TKIP)</option>
 				<option value="WPA2_PSK_AES" 		title="WPA requires an 8-63 ASCII character password." <?php if ("WPA2_PSK_AES"==$security)        echo "selected";?> >WPA2-PSK (AES)</option>
 				<option value="WPA2_PSK_TKIPAES"	title="WPA requires an 8-63 ASCII character or a 64 hex character password. Hex means only the following characters can be used: ABCDEF0123456789." <?php if ("WPA2_PSK_TKIPAES"==$security)    echo "selected";?> >WPA2-PSK (TKIP/AES)</option>
-				<option value="WPAWPA2_PSK_TKIPAES" title="WPA requires an 8-63 ASCII character password." <?php if ("WPAWPA2_PSK_TKIPAES"==$security) echo "selected";?> >WPAWPA2-PSK (TKIP/AES)(Recommended)</option>
+				<option value="WPAWPA2_PSK_TKIPAES" title="WPA requires an 8-63 ASCII character password." <?php if ("WPAWPA2_PSK_TKIPAES"==$security) echo "selected";?> >WPA WPA2-PSK (TKIP/AES) (Recommended)</option>
 		<?php
 			if(($isDeviceCBR && ("WPA2_Enterprise"==$security)) || ($isDeviceBWG && ("WPA2_Enterprise"==$security))){
 				echo '<option value="WPA2_Enterprise"		title="WPA2-Enterprise uses a RADIUS servers for authentication purposes." selected >WPA2-Enterprise</option>';
@@ -1148,14 +1148,14 @@ function setResetInfo(info) {
 
 <div id="pop_dialog" class="content_message" style="display: none;">
 	<div class="form-row odd">
-		<p style="color: green;"><b>The recommended security mode is "WPAWPA2-PSK (TKIP/AES)" as it is compatible with most of the Wi-Fi devices.</b></p>
+		<p style="color: green;"><b>The recommended security mode is "WPA WPA2-PSK (TKIP/AES)" as it is compatible with most of the Wi-Fi devices.</b></p>
 	</div>
 	<div class="form-row">
-		<input name="path" id="path1" type="radio" value="WPAWPA2_PSK_TKIPAES" checked="checked"><b>WPAWPA2-PSK (TKIP/AES) (Recommended)</b><br><span>This is the recommended and default option as it is compatible with most of the Wi-Fi devices.This mixed mode option will allow Wi-Fi devices to connect with WPA (with TKIP or AES encryption) or WPA2 (with TKIP or AES encryption). To achieve best Wi-Fi performace in this mode, the Wi-Fi devices must connect using WPA2 with AES encryption.</span><br>
+		<input name="path" id="path1" type="radio" value="WPAWPA2_PSK_TKIPAES" checked="checked"><b>WPA WPA2-PSK (TKIP/AES) (Recommended)</b><br><span>This is the recommended and default option as it is compatible with most of the Wi-Fi devices. This mixed mode option will allow Wi-Fi devices to connect with WPA (with TKIP or AES encryption) or WPA2 (with TKIP or AES encryption). To achieve best Wi-Fi performace in this mode, the Wi-Fi devices must connect using WPA2 with AES encryption.</span><br>
 		<input name="path" id="path2" type="radio" value="WPA2_PSK_AES"><b>WPA2-PSK (AES)</b><br><span>Select this option only if you are sure that all the Wi-Fi devices in your home network support WPA2 with AES encryption. Any older Wi-Fi devices which doesn't support WPA2 and AES encryption will not be able to connect to your Wi-Fi network in this mode.</span><br>
 		<!--input name="path" id="path3" type="radio" value="WEP_64"><b>WEP (64)</b><br><span style="color: red;">This is only applicable for legacy Wi-Fi devices. Using this option will impact your Wi-Fi performance and less secure. Select this option only if you have very old Wi-Fi device and if it does not support WPA or WPA2 option.</span><br>
 		<input name="path" id="path4" type="radio" value="WEP_128"><b>WEP (128)</b><br><span style="color: red;">This is only applicable for legacy Wi-Fi devices. Using this option will impact your Wi-Fi performance and less secure.Select this option only if you have very old Wi-Fi device and if it does not support WPA or WPA2 option.</span><br-->
-		<input name="path" id="path5" type="radio" value="None"><b>Open (Risky)</b><br><span style="color: red;">This is not recommended as it is doesn't have any security and anybody can connect to your Wi-Fi network.</span><br>
+		<input name="path" id="path5" type="radio" value="None"><b>Open (Risky)</b><br><span style="color: red;">This is not recommended as it doesn't have any security and anybody can connect to your Wi-Fi network.</span><br>
 
 <?php if(($isDeviceCBR) || ($isDeviceBWG)){ ?>
 
