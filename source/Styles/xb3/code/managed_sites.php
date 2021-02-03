@@ -664,8 +664,8 @@ $.validator.addMethod("no_space", function(value, element, param) {
 			<input  type="hidden"  name="update_trusted_computers"  value="true" />
 
 		<?php
-		$hostsInstance = getInstanceIds("Device.Hosts.Host.");
-		$hostsInstanceArr = explode(",", $hostsInstance);
+	//	$hostsInstance = getInstanceIds("Device.Hosts.Host.");
+	//	$hostsInstanceArr = explode(",", $hostsInstance);
 
 		$hostNums = getStr("Device.Hosts.HostNumberOfEntries");
 
