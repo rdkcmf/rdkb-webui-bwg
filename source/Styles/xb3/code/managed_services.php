@@ -301,8 +301,8 @@ $(document).ready(function() {
 			<input  type="hidden"  name="update_trusted_computers"  value="true" />
 
 		<?php
-			$hostsInstance = getInstanceIds("Device.Hosts.Host.");
-			$hostsInstanceArr = explode(",", $hostsInstance);
+		//	$hostsInstance = getInstanceIds("Device.Hosts.Host.");
+		//	$hostsInstanceArr = explode(",", $hostsInstance);
 
 			$hostNums = getStr("Device.Hosts.HostNumberOfEntries");
 
