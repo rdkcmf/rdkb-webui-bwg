@@ -798,6 +798,7 @@ $(document).ready(function() {
       		echo '</tr>';
 		
 		$Hotspot_SSIDNumberOfEntries = getStr("Device.X_COMCAST-COM_GRE.Tunnel.1.SSIDNumberOfEntries");
+		$macEntry="";
 	for ($j=0; $j < $Hotspot_SSIDNumberOfEntries; $j++) {
                  $Hotspot_SSID_clients = get_hotspot_clients($j+1);
       		for ($i=0; $i < count($Hotspot_SSID_clients); $i++) { 
@@ -810,7 +811,16 @@ $(document).ready(function() {
 	      		$IPv6Prefix    = $Hotspot_SSID_clients[$i]['IPv6Prefix'];
 	      		$DHCPv6Status  = $Hotspot_SSID_clients[$i]['DHCPv6Status'];
 	      		$IPv6LocalAddr = $Hotspot_SSID_clients[$i]['IPv6LinkLocalAddress'];
-
+			$instanceIds= getInstanceIds("Device.WiFi.AccessPoint.6.X_CISCO_COM_MacFilterTable.");
+			$macfilterexplode= explode(",",$instanceIds);
+			for($n=0;$n<count($macfilterexplode);$n++){
+				$id= $macfilterexplode[$n];
+				$macfilterAddress= getStr("Device.WiFi.AccessPoint.6.X_CISCO_COM_MacFilterTable."+$id+".MACAddress");
+				if(strtolower($MACAddress) == strtolower($macfilterAddress)){
+					$macEntry="1";
+					break;
+				}
+			}			
 	      		if ($j == 0 || $j == 2) {
 	      			$gre_ssid = 1;
                                 $frequency_band = getStr("Device.WiFi.Radio.1.OperatingFrequencyBand");
@@ -844,7 +854,8 @@ $(document).ready(function() {
                 echo '<td headers="xfinitywifi-ipv4-address">'. $IPv4Address;
                 echo '<td headers="xfinitywifi-rssi-level">'. $RSSILevel." dBm";
                 echo '<td headers="xfinitywifi-mac-address">'. $MACAddress;
-                echo "<td headers=\"xfinitywifi-disconnect-button\"><input type='button' id=" . "'hotspot-X-" .$i. "'" . "  value='X' tabindex='0' name=\"{'gre_ssid':'$gre_ssid','dev_name':'$Hostname','mac_addr':'$MACAddress'}\" title='disconnect and deny Wi-Fi access to this device'  class='XfinitySSID btn confirm'></input></td>";
+		if($macEntry!="1")
+                	echo "<td headers=\"xfinitywifi-disconnect-button\"><input type='button' id=" . "'hotspot-X-" .$i. "'" . "  value='X' tabindex='0' name=\"{'gre_ssid':'$gre_ssid','dev_name':'$Hostname','mac_addr':'$MACAddress'}\" title='disconnect and deny Wi-Fi access to this device'  class='XfinitySSID btn confirm'></input></td>";
 		    	echo '</tr>';
       		}//end of for;
 	}
