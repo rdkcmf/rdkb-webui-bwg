@@ -765,6 +765,11 @@ $(document).ready(function() {
 		else
 			$(".btn-group").show();
 	}
+        if ( "CGA4332COM"  ==  "<?php echo $modelName; ?>" )
+        {
+                $(".btn-group").hide();
+                $(".div_wps_setting").hide();
+        }
 	// xb3_R1_4: just for now, remove public WiFi
 	// $(".div_public_wifi").remove();
 
