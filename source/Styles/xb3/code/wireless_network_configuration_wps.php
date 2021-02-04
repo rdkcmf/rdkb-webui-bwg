@@ -29,6 +29,11 @@
 <?php include('includes/nav.php'); ?>
 
 <?php
+if ( "CGA4332COM"  == getStr("Device.DeviceInfo.ModelName"))
+{
+        echo '<script type="text/javascript">alert("'._("Gateway does not support Wi-Fi Protected Setup (WPS) ! You will be redirected to WiFi status page ..").'");location.href="wireless_network_configuration.php";</script>';
+        exit(0);
+}
 // $ssids			= explode(",", getInstanceIds("Device.WiFi.SSID."));
 $ssids		=array(1,2);	//Currently, only SSID.1(2.4G) and SSID.2(5G) are involved with WPS
 $wps_enabled	= "false";
