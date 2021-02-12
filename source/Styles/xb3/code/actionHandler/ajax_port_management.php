@@ -93,8 +93,19 @@ try {
 
 	if ($opType === 'edit') {
 		/* editing a rule */
-                if(!($r_portStart >= 1 &&  $r_portEnd <= 65535 && filter_var($r_ipStart,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4) && filter_var($r_ipEnd,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4))){
-                       throw new Exception("Port Number or ip is not in the valid range");
+                if(!($r_portStart >= 1 &&  $r_portStart <= 65535 && $r_portEnd >= 1 && $r_portEnd <=65535)){
+                       throw new Exception("Port Number is not in the valid range");
+                }
+                if( $r_portEnd < $r_portStart ){
+                       throw new Exception("Please enter a value greater than or equal to Start port");
+                }
+                $ip_s = explode(".", "$r_ipStart") ;
+                if(!(($ip_s[0] >=1 && $ip_s[0] <=255) && ($ip_s[1] >=1 && $ip_s[1] <=255) && ($ip_s[2] >=1 && $ip_s[2] <=255) && ($ip_s[3] >=1 && $ip_s[3] <=255))) {
+                       throw new Exception("ip_start is not valid");
+                }
+                $ip_e = explode(".", "$r_ipEnd") ;
+                if(!(($ip_e[0] >=1 && $ip_e[0] <=255) && ($ip_e[1] >=1 && $ip_e[1] <=255) && ($ip_e[2] >=1 && $ip_e[2] <=255) && ($ip_e[3] >=1 && $ip_e[3] <=255))) {
+                       throw new Exception("ip_end is not valid");
                 }
 		$paramArray = 
 			array (
@@ -127,8 +138,19 @@ try {
 		if (!in_array($addId, $idArr)) {
 			throw new Exception("Failed to add port management rule entry");
 		}
-                if(!($r_portStart >= 1 &&  $r_portEnd <= 65535 && filter_var($r_ipStart,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4) && filter_var($r_ipEnd,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4))){
-                       throw new Exception("Port Number or ip is not in the valid range");
+                if(!($r_portStart >= 1 &&  $r_portStart <= 65535 && $r_portEnd >= 1 && $r_portEnd <=65535)){
+                       throw new Exception("Port Number is not in the valid range");
+                }
+                if( $r_portEnd < $r_portStart ){
+                       throw new Exception("Please enter a value greater than or equal to Start port");
+                }
+                $ip_s = explode(".", "$r_ipStart") ;
+                if(!(($ip_s[0] >=1 && $ip_s[0] <=255) && ($ip_s[1] >=1 && $ip_s[1] <=255) && ($ip_s[2] >=1 && $ip_s[2] <=255) && ($ip_s[3] >=1 && $ip_s[3] <=255))) {
+                       throw new Exception("ip_start is not valid");
+                }
+                $ip_e = explode(".", "$r_ipEnd") ;
+                if(!(($ip_e[0] >=1 && $ip_e[0] <=255) && ($ip_e[1] >=1 && $ip_e[1] <=255) && ($ip_e[2] >=1 && $ip_e[2] <=255) && ($ip_e[3] >=1 && $ip_e[3] <=255))) {
+                       throw new Exception("ip_end is not valid");
                 }
 		$paramArray = 
 			array (
@@ -209,7 +231,7 @@ try {
 		$response["connDevArray"] = $connDevArray;
 	}
 
-	$response["status"] = "success";
+        $response = array("status" => "success", "ipstart" => "$r_ipStart", "ipend"  => "$r_ipEnd");
 	header("Content-Type: application/json");
 	echo json_encode($response);
 }
