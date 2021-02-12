@@ -37,6 +37,7 @@
 	$PreferPrivate = getStr("Device.WiFi.X_RDKCENTRAL-COM_PreferPrivate");
 	$encrypt_mode = getStr("Device.WiFi.AccessPoint.1.Security.ModeEnabled");
 	$encrypt_mode1 = getStr("Device.WiFi.AccessPoint.2.Security.ModeEnabled");
+        $modelName= getStr("Device.DeviceInfo.ModelName");
 ?>
 
 <style>
@@ -749,7 +750,7 @@ $(document).ready(function() {
 		</table>
 	</div> <!-- end .module -->
 	<?php 
-		if($encrypt_mode!="None" && $encrypt_mode1!="None" ){
+                if($encrypt_mode!="None" && $encrypt_mode1!="None" && ($modelName != "CGA4332COM") ){
 	?>
 	<div  class="form-btn">
 		<a tabindex='0' href="javascript:void(0)"  class="btn add-Client wifi" >Add Wi-Fi Protected Setup (WPS) Client</a>
