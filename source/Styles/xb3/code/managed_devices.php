@@ -46,6 +46,11 @@ $allowAll = getStr("Device.X_Comcast_com_ParentalControl.ManagedDevices.AllowAll
 ("" == $allowAll) && ($allowAll = "false");
 
 ?>
+<style>
+span[for="managedRadio"] {
+    margin-right: 10px !important;
+}
+</style>
 
 <script  type="text/javascript">
 $(document).ready(function() {
@@ -225,7 +230,7 @@ $(document).ready(function() {
 
 		<h2>Managed Devices</h2>
 		<div class="form-row">
-			<span class="readonlyLabel label">Managed Devices:</span>
+			<span class="readonlyLabel label" for="managedRadio">Managed Devices:</span>
 			<span id="managed_devices_switch"></span>
 		</div>
 		<div class="form-row">

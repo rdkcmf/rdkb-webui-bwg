@@ -45,11 +45,9 @@
 	
 ?>
 <style>
-        label{
-        margin-right: 10px !important;
-}
+        
 label[for="Service_Provider"]{
-        width: 210px !important;
+        margin-left: -8px !important;
 }
 </style>
 <script type="text/javascript">

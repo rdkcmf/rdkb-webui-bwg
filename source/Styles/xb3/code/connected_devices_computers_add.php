@@ -32,7 +32,11 @@
 $beginAddr 	= getStr("Device.DHCPv4.Server.Pool.1.MinAddress");
 $endAddr 	= getStr("Device.DHCPv4.Server.Pool.1.MaxAddress");
 ?>
-
+<style>
+	span[for="hostName"] {
+    margin-right: 10px !important;
+}
+</style>
 <script type="text/javascript">
 $(document).ready(function() {
     comcast.page.init("Connected Devices > Devices > Edit Device", "nav-cdevices");
@@ -157,7 +161,7 @@ $(document).ready(function() {
         <form id="pageForm">
 
 			<div class="form-row">
-        		<span class="readonlyLabel">Host Name:</span>
+        		<span class="readonlyLabel" for="hostName">Host Name:</span>
 				<label for="host_name" class="acs-hide"></label>
         		<input type="text" name="host_name" id="host_name" maxlength="64" />
 			</div>

@@ -212,7 +212,7 @@ $(document).ready(function() {
 				<input type="radio" name="firewall_level" value="High" id="firewall_level_maximum" <?php if ( !strcasecmp("High", $SecurityLevel)) echo "checked"; ?> />
 				<label for="firewall_level_maximum" class="label">Maximum Security (High)</label>
 				<div class="hide">
-					<p><strong>LAN-to-WAN:</strong> Allow as per below.</p>
+					<p><strong>LAN-to-WAN :</strong> Allow as per below.</p>
 					<dl>
 					<dd>HTTP and HTTPS (TCP port 80, 443)</dd>
 					<dd>DNS (TCP/UDP port 53)</dd>
@@ -221,15 +221,15 @@ $(document).ready(function() {
 					<dd>VPN (GRE, UDP 500, TCP 1723)</dd>
 					<dd>iTunes (TCP port 3689)</dd>
 					</dl>
-					<p><strong>WAN-to-LAN:</strong> Block all unrelated traffic and enable IDS.</p>
+					<p><strong>WAN-to-LAN :</strong> Block all unrelated traffic and enable IDS.</p>
 				</div>
 			</li>
 			<li id="medium">
 				<input type="radio" name="firewall_level" value="Medium" id="firewall_level_typical" <?php if ( !strcasecmp("Medium", $SecurityLevel)) echo "checked"; ?> />
 				<label for="firewall_level_typical" class="label">Typical Security (Medium)</label>
 				<div class="hide">
-					<p><strong>LAN-to-WAN:</strong> Allow all.</p>
-					<p><strong>WAN-to-LAN:</strong> Block as per below and enable IDS.</p>
+					<p><strong>LAN-to-WAN :</strong> Allow all.</p>
+					<p><strong>WAN-to-LAN :</strong> Block as per below and enable IDS.</p>
 					<dl>
 					<dd>IDENT (port 113)</dd>
 					<dd>ICMP request</dd>
@@ -249,8 +249,8 @@ $(document).ready(function() {
 				<input type="radio" name="firewall_level" value="Low" id="firewall_level_minimum" <?php if ( !strcasecmp("Low", $SecurityLevel)) echo "checked"; ?>  />
 				<label for="firewall_level_minimum" class="label">Minimum Security (Low)</label>
 				<div class="hide">
-					<p><strong>LAN-to-WAN:</strong> Allow all.</p>
-					<p><strong>WAN-to-LAN:</strong> Block as per below and enable IDS</p>
+					<p><strong>LAN-to-WAN :</strong> Allow all.</p>
+					<p><strong>WAN-to-LAN :</strong> Block as per below and enable IDS</p>
 					<dl>
 					<dd>IDENT (port 113)</dd>
 					</dl>
@@ -261,8 +261,8 @@ $(document).ready(function() {
 				<input type="radio" name="firewall_level" value="Default" id="firewall_level_default" <?php if ( !strcasecmp("Default", $SecurityLevel)) echo "checked"; ?>  />
 				<label for="firewall_level_default" class="label">Typical Security (Default)</label>
 				<div class="hide">
-					<p><strong>LAN-to-WAN:</strong> Allow all.</p>
-					<p><strong>WAN-to-LAN:</strong> Block all unrelated traffic and enable IDS.</p>
+					<p><strong>LAN-to-WAN :</strong> Allow all.</p>
+					<p><strong>WAN-to-LAN :</strong> Block all unrelated traffic and enable IDS.</p>
 				</div>
 			</li>
 			<li id="custom">

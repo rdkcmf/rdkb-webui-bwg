@@ -219,13 +219,10 @@ $password_mso_user = !(($id == 1 || $id == 2) && ($_SESSION["loginuser"] == "mso
 ?>
 
 <style>
-	.wirelessRadio,label[for="network_name"],label[for="security"],label[for="network_password"] {
-		margin-right: 14px !important;
+	.wirelessRadio{
+		margin-right: 10px !important;
 	
 	}
-
-	#tip_security_mode{
-margin-left:12px;}
 
 </style>
 

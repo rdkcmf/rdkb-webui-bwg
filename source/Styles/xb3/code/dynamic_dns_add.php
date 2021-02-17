@@ -26,13 +26,6 @@
 </div><!-- end #sub-header -->
 
 <?php include('includes/nav.php'); ?>
-
-<style>
-	label{
-		margin-right: 10px !important;
-	}
-</style>
-
 <script type="text/javascript">
 $(document).ready(function() {
     comcast.page.init("Advanced > Dynamic DNS", "nav-Dynamic-dns");

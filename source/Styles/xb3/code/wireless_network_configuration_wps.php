@@ -108,6 +108,11 @@ if("false"==$broadcastSSID_1 && "false"==$broadcastSSID_2) $wps_config	= "false"
 
 ?>
 
+<style>
+span[for="wps"], span[for="pin"], span[for="method"] {
+    margin-right: 10px !important;
+}
+</style>
 <script type="text/javascript">
 function validChecksum(PIN)
 {
@@ -302,15 +307,15 @@ $(document).ready(function() {
 				</select>
 			</div>
 			<div class="form-row">
-				<span class="readonlyLabel label"> Wi-Fi Protected Setup (WPS):</span>
+				<span class="readonlyLabel label" for="wps"> Wi-Fi Protected Setup (WPS):</span>
 				<span id="wps_switch"></span>
 			</div>
 			<div class="form-row odd">
-				<span class="readonlyLabel">AP PIN:</span> 
+				<span class="readonlyLabel" for="pin">AP PIN:</span> 
 				<span class="value" id="wps_pin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $wps_pin; ?></span>
 			</div>
 			<div class="form-row">
-				<span class="readonlyLabel label">WPS Pin Method:</span>
+				<span class="readonlyLabel label" for="method">WPS Pin Method:</span>
 				<span id="pin_switch"></span>
 			</div>
 			<div id="opt_switch" class="form-row odd">
