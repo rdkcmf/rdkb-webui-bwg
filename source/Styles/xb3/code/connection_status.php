@@ -600,7 +600,7 @@ overflow-wrap: break-word;
 	<?php
 	$Model_Name   = php_getstr("Device.DeviceInfo.ModelName");
 	/* CBR device won't support homesecurity wifi for now */
-        if( $Model_Name != "CGA4131COM" )
+        if( ($Model_Name != "CGA4131COM") && ($modelName != "CGA4332COM") )
         {
 		$ssids 		= explode(",", php_getinstanceids("Device.WiFi.SSID."));
 		$public_v	= array();
