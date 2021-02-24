@@ -21,13 +21,6 @@
 <?php include('includes/utility.php'); ?>
 <?php
 header('X-robots-tag: noindex,nofollow');
-$DeviceInfo_param = array(
-	"ConfigureWiFi"	=> "Device.DeviceInfo.X_RDKCENTRAL-COM_ConfigureWiFi",
-	"CloudUIEnable"	=> "Device.DeviceInfo.X_RDKCENTRAL-COM_CloudUIEnable",
-	"CloudUIWebURL"	=> "Device.DeviceInfo.X_RDKCENTRAL-COM_CloudUIWebURL",
-	"CaptivePortalEnable"	=> "Device.DeviceInfo.X_RDKCENTRAL-COM_CaptivePortalEnable",
-	);
-$DeviceInfo_value = KeyExtGet("Device.DeviceInfo.", $DeviceInfo_param);
 
 $DeviceControl_param = array(
 	"LanGwIPv4"	=> "Device.X_CISCO_COM_DeviceControl.LanManagementEntry.1.LanIPAddress",
@@ -36,10 +29,6 @@ $DeviceControl_param = array(
 	);
 $DeviceControl_value = KeyExtGet("Device.X_CISCO_COM_DeviceControl.", $DeviceControl_param);
 
-$CONFIGUREWIFI	= $DeviceInfo_value["ConfigureWiFi"];
-$Cloud_Enabled	= $DeviceInfo_value["CloudUIEnable"];
-$Cloud_WebURL	= $DeviceInfo_value["CloudUIWebURL"];
-$CaptivePortalEnable	= $DeviceInfo_value["CaptivePortalEnable"];
 
 $url = $_SERVER['HTTP_HOST'];
 $Wan_IPv4 = getStr("Device.X_CISCO_COM_CableModem.IPAddress");
@@ -84,16 +73,6 @@ $psmMode = $DeviceControl_value['psmMode'];
 
 if(!$isMSO) {
         setStr("Device.DeviceInfo.X_RDKCENTRAL-COM_UI_ACCESS","ui_access",true);
-
-	if(!strcmp($CaptivePortalEnable, "true")) {
-		if(!strcmp($CONFIGUREWIFI, "true")) {
-			$SERVER_ADDR = $_SERVER['SERVER_ADDR'];
-		
-			$ip_addr = strpos($SERVER_ADDR, ":") == false ? $LanGwIPv4 : $LanGwIPv6 ;
-			header('Location:http://'.$ip_addr.'/captiveportal.php');
-			exit;
-		}
-	}
 }
 
 ?>
