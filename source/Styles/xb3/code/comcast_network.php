@@ -125,11 +125,11 @@ function sec2dhms($sec)
 		<span class="value"><?php echo ($sta_inet=="true") ? "Active" : "Inactive";?></span>
 	</div>
         <?php
-        if(($_SESSION["loginuser"] == "mso")&& ($modelName == "CGA4332COM")){
+        if($modelName == "CGA4332COM"){
         ?>
                 <div class="form-row odd">
                         <span class="readonlyLabel">WAN Mode:</span>
-                        <span class="value"><?php echo (getStr("Device.X_RDKCENTRAL-COM_EthernetWAN.CurrentOperationalMode")=="Ethernet") ? "eWAN" : "DOCSIS";?></span>
+                        <span class="value"><?php echo (getStr("Device.X_RDKCENTRAL-COM_EthernetWAN.CurrentOperationalMode"));?></span>
                 </div>
         <?php
         }
