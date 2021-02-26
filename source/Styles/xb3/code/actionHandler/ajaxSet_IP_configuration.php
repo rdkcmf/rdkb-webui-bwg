@@ -53,25 +53,20 @@ function valid_GW_IP($beginAddress, $endAddress, $gwAddress){
 function isValidGW($gwAddress, $subnetMask, $beginAddress, $endAddress){
 	//RFC1918 >> valid private IP range [10.0.0.1 ~ 10.255.255.253,\n172.16.0.1 ~ 172.31.255.253,\n192.168.0.1 ~ 192.168.255.253]
 	//subnetMask
+	$exp="/^(((255\.){3}(255|254|252|248|240|224|192|128|0+))|((255\.){2}(255|254|252|248|240|224|192|128|0+)\.0)|((255\.)(255|254|252|248|240|224|192|128|0+)(\.0+){2})|((255|254|252|248|240|224|192|128|0+)(\.0+){3}))$/";
 	if (ip2long($gwAddress) == -1 || ip2long($gwAddress) === FALSE) return false;
 	if (explode('.', $gwAddress)[0] == '10') {
-		//for classA network only these subnetMask are allowed
-		$exp="/^(((255\.){2}(255|254|252|248|240|224|192|128|0+)(\.(252|248|240|224|192|128|0+)))|((255\.){2}(255|254|252|248|240|224|192|128|0+)\.0)|((255\.)(255|254|252|248|240|224|192|128|0+)(\.0+){2})|((255|254|252|248|240|224|192|128|0+)(\.0+){3}))$/";
 		if(!preg_match($exp, $subnetMask)) return false;
 		if(!valid_GW_IP('10.0.0.1', '10.255.255.253', $gwAddress)) return false;
 		$ipRange = ipRange($gwAddress, $subnetMask);
 	}
 	else if (explode('.', $gwAddress)[0] == '172') {
-		//for classB network only these subnetMask are allowed
-		$exp="/^(((255\.255\.255\.)(252|248|240|224|192|128|0+))|((255\.255\.)(255|254|252|248|240|224|192|128|0+)\.0))$/";
 		if(!preg_match($exp, $subnetMask))
 			return false;
 		if(!valid_GW_IP('172.16.0.1', '172.31.255.253', $gwAddress)) return false;
 		$ipRange = ipRange($gwAddress, $subnetMask);
 	}
 	else if (explode('.', $gwAddress)[0] == '192') {
-		//for classC network only these subnetMask are allowed
-		$exp="/^(((255\.255\.255\.)(252|248|240|224|192|128|0+)))$/";
 		if(!preg_match($exp, $subnetMask))
 			return false;
 		if(!(valid_GW_IP('192.168.0.1', '192.168.146.253', $gwAddress) || valid_GW_IP('192.168.148.1', '192.168.255.253', $gwAddress))) return false;

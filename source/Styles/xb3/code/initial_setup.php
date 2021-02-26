@@ -485,12 +485,8 @@ function netmask_is_validate()
 function judgeSubnetMask(ipAddress){
 		var ip_addr = $("#ipv4_gateway_address_1").val();
 		var exp="";
-		if(ip_addr=="10"){
-			exp="^(((255\.){2}(255|254|252|248|240|224|192|128|0+)(\.(252|248|240|224|192|128|0+)))|((255\.){2}(255|254|252|248|240|224|192|128|0+)\.0)|((255\.)(255|254|252|248|240|224|192|128|0+)(\.0+){2})|((255|254|252|248|240|224|192|128|0+)(\.0+){3}))$";
-		}else if(ip_addr=="172"){
-			exp="^(((255\.255\.255\.)(252|248|240|224|192|128|0+))|((255\.255\.)(255|254|252|248|240|224|192|128|0+)\.0))$";
-		}else if(ip_addr=="192"){
-			exp="^(((255\.255\.255\.)(252|248|240|224|192|128|0+)))$";
+		if(ip_addr=="10" || ip_addr=="172" || ip_addr=="192" ){
+			exp="^(((255\.){3}(255|254|252|248|240|224|192|128|0+))|((255\.){2}(255|254|252|248|240|224|192|128|0+)\.0)|((255\.)(255|254|252|248|240|224|192|128|0+)(\.0+){2})|((255|254|252|248|240|224|192|128|0+)(\.0+){3}))$";
 		}
 		var str = ipAddress;
 		var patt = new RegExp(exp);
@@ -576,7 +572,11 @@ $('#submit_ipv4').click(function(e){
 	var dhcp_begin_addr = $('#ipv4_dhcp_beginning_address_1').val() + "." + $('#ipv4_dhcp_beginning_address_2').val() + "." + $('#ipv4_dhcp_beginning_address_3').val() + "." + $('#ipv4_dhcp_beginning_address_4').val();
 	var dhcp_end_addr = $('#ipv4_dhcp_ending_address_1').val() + "." + $('#ipv4_dhcp_ending_address_2').val() + "." + $('#ipv4_dhcp_ending_address_3').val() + "." + $('#ipv4_dhcp_ending_address_4').val();
 
-
+    if (netmask_is_validate() == false) {
+                jAlert("Invalid netmask!");
+                return;
+    }
+	
     if (! validate_v4addr_pool(DBArr, DEArr)) {
         jAlert("Beginning Address can't be larger than ending address!");
         return;
