@@ -207,6 +207,10 @@ csrfprotector_rdkb::init();
 </head>
 <script type="text/javascript">
 	$(document).ready(function() {
+		if(document.cookie==""){
+			var sessionCsrf= "<?php echo  $_SESSION['Csrf_token'] ;?>";
+			sessionStorage.setItem("Csrfp_token",sessionCsrf);
+		}
 		$("table.data td").each(function() {
 			if($(this).text().split("\n")[0].length > 25)
 			{

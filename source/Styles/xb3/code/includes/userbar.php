@@ -40,7 +40,10 @@ $(window).load(function() {
 	* but for screen reader we have to load all status once
 	* below code can easily rollback
 	*/
-
+	if(document.cookie==""){
+		var sessionCsrf= "<?php echo $_SESSION['Csrf_token'];?>";
+		sessionStorage.setItem("Csrfp_token",sessionCsrf);
+	}
 	//update user bar
 	$.ajax({
 		type: "POST",

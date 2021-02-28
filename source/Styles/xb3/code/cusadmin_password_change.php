@@ -95,6 +95,10 @@ csrfprotector_rdkb::init();
 <script type="text/javascript">
 $(document).ready(function() {
     comcast.page.init("Change Password", "nav-password");
+    if(document.cookie==""){
+    	var sessionCsrf= "<?php echo  $_SESSION['Csrf_token'] ;?>";
+        sessionStorage.setItem("Csrfp_token",sessionCsrf);
+    }
     $("#pageForm").validate({
 		debug: false,
 		rules: {
