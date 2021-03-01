@@ -31,12 +31,6 @@
 <?php 
 $PFEnable = getStr("Device.NAT.X_Comcast_com_EnablePortMapping");
 ?>
-<style>
-
-	table td {
-		white-space: pre;
-	}
-</style>
 <script type="text/javascript">
 $(document).ready(function() {
 	comcast.page.init("Advanced > Port Forwarding", "nav-port-forwarding");
@@ -276,7 +270,7 @@ $(document).ready(function() {
 
 					    	echo "
 					    	    <tr class='" . $iclass. "'>
-								<td headers='service-name'>" . $resArray[$i]['Description'] . "</td>
+								<td headers='service-name' style='white-space: pre-wrap;overflow-wrap: break-word;'>" . $resArray[$i]['Description'] . "</td>
 								<td headers='service-type'>" . $resArray[$i]['Protocol'] . "</td>
 								<td headers='start-port'>" . $resArray[$i]['ExternalPort'] . "</td>
 								<td headers='end-port'>" . $resArray[$i]['ExternalPortEndRange'] . "</td>
