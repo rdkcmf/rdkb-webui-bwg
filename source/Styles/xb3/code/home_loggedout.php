@@ -29,7 +29,9 @@ csrfprotector_rdkb::init();
 	session_start();
 	$cur_user = $_SESSION['loginuser'];
 	
-	exec("/usr/bin/logger -t GUI -p local5.notice \"User:$cur_user logout\" ");
+	exec("/usr/bin/logger -t GUI -p local5.notice \"User:'$cur_user' logout\" ");
+        $curr_sessID = session_id();
+        exec("/usr/bin/logger -t GUI -p local5.notice \"WebUI: Session:'$curr_sessID' is closed\" ");
 	
 	session_unset();
 	session_destroy();

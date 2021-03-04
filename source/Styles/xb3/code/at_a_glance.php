@@ -24,11 +24,13 @@
 <?php
 
 session_start();
-
+$curr_sessID = session_id();
+$curr_IP = $_SERVER['REMOTE_ADDR'];
+exec("/usr/bin/logger -t GUI -p local5.notice \"WebUI: Session:'$curr_sessID' is open from '$curr_IP'\" ");
+	$sta_moca ="";
 	$a = getStr("Device.X_CISCO_COM_MTA.Battery.RemainingCharge");
 	$b = getStr("Device.X_CISCO_COM_MTA.Battery.ActualCapacity");
 	$sta_batt = ($a<=$b && $a && $b) ? round(100*$a/$b) : 0;
-	
 	//$sta_batt = "61";
 	//find battery class manually	
 	if($sta_batt > 90) { $battery_class = "bat-100"; }

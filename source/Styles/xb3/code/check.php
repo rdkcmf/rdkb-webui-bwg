@@ -116,8 +116,24 @@ $tokenendpoint = $clientid = $pStr = "";
 $JWTdir = "/tmp/.jwt/";
 $JWTfile = $JWTdir . "JWT.txt";
 header('X-robots-tag: noindex,nofollow');
+$modelName= getStr("Device.DeviceInfo.ModelName");
 function create_session(){
 		session_start();
+                $curr_sessID = session_id();
+                $curr_IP = $_SERVER['REMOTE_ADDR'];
+                exec("/usr/bin/logger -t GUI -p local5.notice \"WebUI: Session:'$curr_sessID' is open from '$curr_IP'\" ");
+                if (($modelName != "CGA4131COM") && ($modelName != "CGA4332COM")) {
+                    // session IP binding
+                    if (!isset($_SESSION['PREV_REMOTEADDR'])) {
+                        $_SESSION['PREV_REMOTEADDR'] = $_SERVER['REMOTE_ADDR'];
+                    }
+                    if ($_SERVER['REMOTE_ADDR'] != $_SESSION['PREV_REMOTEADDR']) {
+                        exec("/usr/bin/logger -t GUI -p local5.notice \"WebUI: Session:'$curr_sessID' is closed\" ");
+                        session_destroy(); // Destroy all data in session
+                        echo '<script type="text/javascript">alert("Please Login First!"); location.href="home_loggedout.php";</script>';
+                        exit(0);
+                    }
+                }
 		//echo("You are logging...");
 		$timeout_val 		= intval(getStr("Device.X_CISCO_COM_DeviceControl.WebUITimeout"));
 		("" == $timeout_val) && ($timeout_val = 900);

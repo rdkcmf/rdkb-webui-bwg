@@ -30,11 +30,25 @@ csrfprotector_rdkb::init();
         $modelName= getStr("Device.DeviceInfo.ModelName");
 	header('X-robots-tag: noindex,nofollow');
 	session_start();
+        $curr_sessID = session_id();
 	
 	if (!isset($_SESSION["loginuser"])) {
 		echo '<script type="text/javascript">alert("Please Login First!"); location.href="home_loggedout.php";</script>';
 		exit(0);
 	}
+        if (($modelName != "CGA4131COM") && ($modelName != "CGA4332COM")) {
+            // session IP binding
+            if (!isset($_SESSION['PREV_REMOTEADDR'])) {
+                $_SESSION['PREV_REMOTEADDR'] = $_SERVER['REMOTE_ADDR'];
+            }
+            if ($_SERVER['REMOTE_ADDR'] != $_SESSION['PREV_REMOTEADDR']) {
+                exec("/usr/bin/logger -t GUI -p local5.notice \"WebUI: Session:'$curr_sessID' is closed\" ");
+                session_destroy(); // Destroy all data in session
+                echo '<script type="text/javascript">alert("Please Login First!"); location.href="home_loggedout.php";</script>';
+                exit(0);
+            }
+        }        
+
 	$not_cusadmin_pages = array('email_notification.php', 'routing.php', 'change_password.php', 'voice_quality_metrics' ,'qos', 'mta_Line_Diagnostics', 'mta_sip_packet_log', 'callsignallog.php', 'DSXlog.php', 'wan', 'dynamic_dns','wizard_step1','wizard_step2');
 	$not_admin_pages = array('email_notification.php', 'hs_port_forwarding', 'routing.php', 'dynamic_dns', 'mta', 'voice_quality_metrics' ,'qos');
 	$not_bridge_static_pages = array('local_ip','wizard', 'firewall', 'managed', 'parental', 'forwarding', 'triggering', 'dmz', 'routing');
