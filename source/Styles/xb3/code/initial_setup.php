@@ -946,10 +946,10 @@ function edmz()
 		<p class="hidden"><strong>LAN IP address:</strong> Enter the IP address of the LAN.</p>
 		<p class="hidden"><strong>LAN Subnet Mask:</strong> The subnet mask is associated with the IP address.</p>
 		<p class="hidden"><strong>DHCP Starting and Ending Addresses:</strong> The DHCP server in the Gateway allows the router to manage IP address assignment for the connected devices.</p>
-		<p class="hidden"><strong>DMZ Host Ip:</strong>Enter the IP address of the DMZ Host</p>
-		<p class="hidden"><strong>Router Name:</strong>Enter the name of the Router</p>
-		<p class="hidden"><strong>TFTP Server:</strong>Enter the IP address of the TFTP server</p>
-		<p class="hidden"><strong>File Name:</strong>Enter the name of the configuration file to be download</p>
+		<p class="hidden"><strong>DMZ Host IP:</strong> Enter the IP address of the DMZ Host</p>
+		<p class="hidden"><strong>Router Name:</strong> Enter the name of the Router</p>
+		<p class="hidden"><strong>TFTP Server:</strong> Enter the IP address of the TFTP server</p>
+		<p class="hidden"><strong>File Name:</strong> Enter the name of the configuration file to be download</p>
 	</div>
 
 	<form action="#TBD" method="post" id="pageForm">
