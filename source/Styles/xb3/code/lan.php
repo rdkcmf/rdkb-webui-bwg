@@ -112,13 +112,32 @@ $(document).ready(function() {
 	</div>
 
 	<?php
-	
-	function NameMap($str)
+
+	function NameMap($str,$i)
 	{
+                $wan_enable = getStr("Device.Ethernet.X_RDKCENTRAL-COM_WAN.Enabled");
+                $selectedOperationalMode = getStr("Device.X_RDKCENTRAL-COM_EthernetWAN.SelectedOperationalMode");
+                $autoWanEnable= getStr("Device.DeviceInfo.X_RDKCENTRAL-COM_AutowanFeatureSupport");
+                $wanPort= getStr("Device.Ethernet.X_RDKCENTRAL-COM_WAN.Port");
+          	$currentOpMode = getStr("Device.X_RDKCENTRAL-COM_EthernetWAN.CurrentOperationalMode");
 		switch ($str)
 		{
 			case "Up":
-				return "Active";
+				if(($autoWanEnable=="true") && ($i==($wanPort+1))){
+					if(strtolower($selectedOperationalMode)=="ethernet"){
+						return "Active Ethernet WAN";
+					}else if(strtolower($selectedOperationalMode)=="docsis"){
+						return "Active";
+					}else{
+						if(strtolower($currentOpMode)=="ethernet"){
+                                                        return  "Active Auto WAN";
+                                                }else{
+                                                        return "Active";
+                                                }
+					}
+				} else {
+					return "Active";
+				}
 				break;
 			case "Down":
 				return "Inactive";
@@ -163,12 +182,12 @@ $(document).ready(function() {
 		} 
 		*/
 		array_push($dm, array("Connection Speed:", $lspeed.$lunit));
-		
+
 		for ($m=0, $i=0; $i<count($dm); $i++)
 		{
 			echo '<div class="form-row '.(($m++ % 2)?'odd':'').'" >';
 			echo '<span class="readonlyLabel">'.$dm[$i][0].'</span>';
-			echo '<span class="value">'.($dm[$i][1] === null ? NameMap($dm[$i][2]) : $dm[$i][1]).'</span>';
+			echo '<span class="value">'.($dm[$i][1] === null ? NameMap($dm[$i][2],$ids[$id]) : $dm[$i][1]).'</span>';
 			
 			echo '</div>';
 		}
