@@ -499,7 +499,7 @@ $(document).ready(function() {
 
     <div id="educational-tip">
         <p class="tip"> Add a rule for adding WAN IP.</p>
-        <p class="hidden">Some more text to help the customer understand about this content.</p>
+        <p class="hidden">WAN IP Method: A Public IP for WAN interface is automatically assigned using DHCP Protocol or Statically assigned by Comcast.</p>
     </div>
 
 	<form method="post" id="pageForm" action="wan.php">
