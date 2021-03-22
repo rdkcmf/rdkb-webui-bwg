@@ -94,7 +94,7 @@ csrfprotector_rdkb::init();
 		<div id="main-content">
 <script type="text/javascript">
 $(document).ready(function() {
-    comcast.page.init("Troubleshooting > Change Password", "nav-password");
+    comcast.page.init("Change Password", "nav-password");
     $("#pageForm").validate({
 		debug: false,
 		rules: {
