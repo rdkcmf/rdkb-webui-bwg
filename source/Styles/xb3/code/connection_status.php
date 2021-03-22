@@ -205,8 +205,8 @@ $(document).ready(function() {
   margin-left: 45px;
 }
 .ssid-style{
-white-space: pre-line;
 overflow-wrap: break-word;
+width: 80%;  
 }
 </style>
 
@@ -511,12 +511,8 @@ overflow-wrap: break-word;
 
   <div style="width:355px;float:left;position:relative;left:5px;" class="wifi_section"><!-- contain private and public Wi-Fi -->
     <div class="module forms block private-wifi">
-        <h2 class="noTrimSpace">Private Wi-Fi Network- <span class="ssid-style" style="white-space: pre-wrap;overflow-wrap: break-word;">
-           <?php
-              echo htmlspecialchars($wifi_value["SSID1"], ENT_NOQUOTES, 'UTF-8');
-            ?>
-          </span>
-        </h2>
+      <h2><div class="ssid-style"><span>Private Wi-Fi Network- </span>
+<span style="white-space: pre;overflow-wrap: break-word;"><?php echo htmlspecialchars($wifi_value["SSID1"], ENT_NOQUOTES, 'UTF-8');?></span></h2>
         <p class="button"><a tabindex='0' href="wireless_network_configuration_edit.php?id=1" class="btn">Edit</a></p>
         <div class="form-row">
           <span class="readonlyLabel">Wireless Network (Wi-Fi 2.4 GHz):</span> <span class="value">
@@ -554,12 +550,8 @@ overflow-wrap: break-word;
     </div><!-- end .module private wifi 2.4-->  
      
     <div class="module forms block private-wifi" style="position:relative;top:0px;right:0px;">
-        <h2 class="noTrimSpace">Private Wi-Fi Network- <span class="ssid-style" style="white-space: pre-wrap;overflow-wrap: break-word;">
-           <?php
-              echo htmlspecialchars($wifi_value["SSID2"], ENT_NOQUOTES, 'UTF-8');
-            ?>
-          </span>
-        </h2>
+      <h2><div class="ssid-style"><span>Private Wi-Fi Network- </span>
+<span style="white-space: pre;overflow-wrap: break-word;"><?php echo htmlspecialchars($wifi_value["SSID2"], ENT_NOQUOTES, 'UTF-8'); ?></span></h2>
         <p class="button"><a tabindex='0' href="wireless_network_configuration_edit.php?id=2" class="btn">Edit</a></p>
         <div class="form-row">
           <span class="readonlyLabel">Wireless Network (Wi-Fi 5 GHz):</span> <span class="value">
