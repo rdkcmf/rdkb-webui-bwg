@@ -479,19 +479,17 @@ $(document).ready(function() {
 	    // status code 0 = success   
 		$HostNum = count($HostIndexArr) - 1;
 	}
-
+	$onlinePrivateInstanceArr = array();
+        $onlinePrivateHostNameArr = array();
+        $onlineHostNameArr        = array();
+        $onlineHostMAC            = array();
+        $onlinePrivateNetworkHost['hostNum'] = 0;
+        $offlinePrivateNetworkHost['hostNum'] = 0;
+        $offlinePrivateInstanceArr = array();
+        $offlineHostNameArr = array();
+        $offlineHostMAC = array();
+        $PublicNetworkHost['hostNum']  = 0;
 	if(!empty($HostNum)){
-
-		$onlinePrivateInstanceArr = array();
-		$onlinePrivateHostNameArr = array();
-		$onlineHostNameArr        = array();
-		$onlineHostMAC        	  = array();
-		$onlinePrivateNetworkHost['hostNum'] = 0;
-		$offlinePrivateNetworkHost['hostNum'] = 0;
-                $offlinePrivateInstanceArr = array();
-                $offlineHostNameArr = array();
-                $offlineHostMAC = array();
-		$PublicNetworkHost['hostNum']  = 0;
 
 		$Host = getParaValues($rootObjName, $paramNameArray, $mapping_array);
 
@@ -551,7 +549,10 @@ $(document).ready(function() {
 			        array_push($onlineHostNameArr, $onlinePrivateNetworkHost["$j"]['HostName']);
 
                     $onlinePrivateNetworkHost["$j"]['IPv4Address'] = $Host["$i"]['IPv4Address.1.IPAddress'];
+                    $Host["$i"]['IPv6Address.2.IPAddress'] = isset($Host["$i"]['IPv6Address.2.IPAddress']) ? $Host["$i"]['IPv6Address.2.IPAddress'] : "";
                     $onlinePrivateNetworkHost["$j"]['IPv6Address1'] = $Host["$i"]['IPv6Address.2.IPAddress'];
+		    $Host["$i"]['IPv6Address.1.IPAddress'] = isset($Host["$i"]['IPv6Address.1.IPAddress']) ? $Host["$i"]['IPv6Address.1.IPAddress'] : "";
+                    $Host["$i"]['IPv6Address.3.IPAddress'] = isset($Host["$i"]['IPv6Address.3.IPAddress']) ? $Host["$i"]['IPv6Address.3.IPAddress'] : "";
                     $onlinePrivateNetworkHost["$j"]['IPv6Address2'] = resolve_IPV6_global_address($Host["$i"]['IPv6Address.1.IPAddress'],$Host["$i"]['IPv6Address.3.IPAddress']);
 
                     $onlinePrivateNetworkHost["$j"]['PhysAddress'] = strtoupper($Host["$i"]['PhysAddress']);
@@ -590,6 +591,8 @@ $(document).ready(function() {
                               array_push($offlineHostNameArr, $offlinePrivateNetworkHost["$k"]['HostName']);
 
                     $offlinePrivateNetworkHost["$k"]['IPv4Address'] = $Host["$i"]['IPv4Address.1.IPAddress'];
+		    $Host["$i"]['IPv6Address.2.IPAddress'] = isset($Host["$i"]['IPv6Address.2.IPAddress']) ? $Host["$i"]['IPv6Address.2.IPAddress'] : "";
+		    $Host["$i"]['IPv6Address.1.IPAddress'] = isset($Host["$i"]['IPv6Address.1.IPAddress']) ? $Host["$i"]['IPv6Address.1.IPAddress'] : "";
                     $offlinePrivateNetworkHost["$k"]['IPv6Address1'] = $Host["$i"]['IPv6Address.2.IPAddress'];
                     $offlinePrivateNetworkHost["$k"]['IPv6Address2'] = $Host["$i"]['IPv6Address.1.IPAddress'];
 
