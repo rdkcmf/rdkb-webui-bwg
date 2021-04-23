@@ -104,6 +104,7 @@ $passLockoutTime=getStr("Device.UserInterface.PasswordLockoutTime");
 $cusAdminLoginCount=getStr("Device.Users.User.2.X_RDKCENTRAL-COM_LoginCounts");
 $cusAdminLockoutTime=getStr("Device.Users.User.2.X_RDKCENTRAL-COM_LockOutRemainingTime");
 $cusAdminRemainingAttempts=getStr("Device.Users.User.2.X_RDKCENTRAL-COM_RemainingAttempts");
+$currentOpMode = getStr("Device.X_RDKCENTRAL-COM_EthernetWAN.CurrentOperationalMode");
 $cusAdminRemainingAttempts=$cusAdminRemainingAttempts-1;
 $passLockoutTimeMins=$cusAdminLockoutTime/(60);
 $passLockoutTimeMins=round($passLockoutTimeMins,2);
@@ -185,7 +186,7 @@ function create_session(){
                 $curPwd1 = "Invalid_PWD";    // trigger SSO login attempt
             }
 	   // Allowing mso access only through CM IP , in case of CFG3 device CM IP is erouter0 IP.
-	    if ( if_type($server_ip)!="cm_ip") 
+	    if ( ( (if_type($server_ip)=="rg_ip") && (strtolower($currentOpMode) !="ethernet") ) || (if_type($server_ip) =="lan_ip") ) 
             {
             	if($passLockEnable == "true"){
 					
@@ -267,9 +268,9 @@ function create_session(){
 		{
 			$return_status = setStr("Device.Users.User.2.X_RDKCENTRAL-COM_ComparePassword",$_POST["password"],true);
 			sleep(1);
-			$passVal= getStr("Device.Users.User.2.X_RDKCENTRAL-COM_ComparePassword");
+			$passVal= getStr("Device.Users.User.2.X_RDKCENTRAL-COM_ComparePassword");		
 			//$curPwd2 = getStr("Device.Users.User.2.X_CISCO_COM_Password");
-			if ( !innerIP($client_ip) && (if_type($server_ip)!="rg_ip") )
+			if (( !innerIP($client_ip) && (if_type($server_ip)!="rg_ip")) || !checkCusAdminAccess($server_ip))
 			{
 				if($passLockEnable == "true"){
 					
@@ -288,7 +289,9 @@ function create_session(){
             		session_destroy();
 			echo '<script type="text/javascript"> alert("Access denied! You have '.$cusAdminRemainingAttempts.' remaining login attempts; after '.$cusAdminRemainingAttempts.' attempt your account will be locked for 5 mins."); history.back(); </script>';
                 }
-			}else if($passVal=="Invalid_PWD"  || !($return_status)){
+			}
+			
+			else if($passVal=="Invalid_PWD"  || !($return_status)){
 
 				if($passLockEnable == "true"){
 					
@@ -442,6 +445,24 @@ function create_session(){
             }
         }
     }
+
+	function checkCusAdminAccess($ip_addr){
+                $remote_ip= get_ips("erouter0");
+                $server_port = $_SERVER["SERVER_PORT"];
+                $remoteAcess= getStr("Device.UserInterface.X_CISCO_COM_RemoteAccess.Enable");
+                $httpRemoteEnable= getStr("Device.UserInterface.X_CISCO_COM_RemoteAccess.HttpEnable");
+                $httpRemotePort= getStr("Device.UserInterface.X_CISCO_COM_RemoteAccess.HttpPort");
+              	$httpsRemoteEnable=getStr("Device.UserInterface.X_CISCO_COM_RemoteAccess.HttpsEnable");
+                $httpsRemotePort= getStr("Device.UserInterface.X_CISCO_COM_RemoteAccess.HttpsPort");
+		
+                if($remoteAcess==true  && ($httpRemoteEnable ==true|| $httpsRemoteEnable==true) && ($server_port==$httpRemotePort || $server_port==$httpsRemotePort)){
+                                                        return true;
+                                                }
+		return false;
+                                                    
+		
+      	}
+
 	function innerIP($client_ip){		//for compatibility, $client_ip is not used
 		$out		= array();
 		$tmp		= array();
