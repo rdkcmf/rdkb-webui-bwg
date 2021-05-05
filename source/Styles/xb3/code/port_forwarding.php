@@ -274,7 +274,7 @@ $(document).ready(function() {
 								<td headers='service-type'>" . $resArray[$i]['Protocol'] . "</td>
 								<td headers='start-port'>" . $resArray[$i]['ExternalPort'] . "</td>
 								<td headers='end-port'>" . $resArray[$i]['ExternalPortEndRange'] . "</td>
-								<td headers='server-ip'>" . $resArray[$i]['InternalClient'] . "</td>
+								<td headers='server-ip'  style='overflow-wrap: break-word;'>" . $resArray[$i]['InternalClient'] . "</td>
 								<td headers='server-ipv6'>" . $resArray[$i]['X_CISCO_COM_InternalClientV6'] . "</td>
 								<td headers='active'><input type=\"checkbox\" id=\"PortActive_$index\" name=\"PortActive\" $checked /></td>
 								<td headers='edit-button'  class=\"edit\"><a tabindex='0' href=\"port_forwarding_edit.php?id=$index\" class=\"btn\"  id=\"edit_$index\">Edit</a></td>
