@@ -134,11 +134,11 @@ function sec2dhms($sec)
         <?php
         }
         ?>
-	<div class="form-row odd">
+	<div class="form-row ">
 		<span class="readonlyLabel">Local time:</span>
 		<span class="value"><?php echo getStr("Device.Time.CurrentLocalTime");?></span>
 	</div>
-	<div class="form-row ">
+	<div class="form-row odd">
 		<span class="readonlyLabel">System Uptime:</span>
 		<span class="value">
 		<?php
@@ -153,7 +153,7 @@ function sec2dhms($sec)
 		?>
 		</span>
 	</div>
-	<div class="form-row odd">
+	<div class="form-row ">
 		<span class="readonlyLabel">WAN IP Address (IPv4):</span>
 		<span class="value"><?php echo $WANIPv4;?></span>
 	</div>
@@ -277,7 +277,7 @@ function sec2dhms($sec)
 			<?php echo strtoupper(getStr(getStr(getStr($fistUSif."LowerLayers").".LowerLayers").".MACAddress")); ?>
 		</span>
 	</div>
-	<div class="form-row odd">
+	<div class="form-row ">
 		<span class="readonlyLabel">eMTA MAC:</span>
 		<span class="value"><?php echo strtoupper(getStr("Device.X_CISCO_COM_MTA.MACAddress"));?></span>
 	</div>
@@ -289,7 +289,7 @@ function sec2dhms($sec)
 		);
 		$CM_value = KeyExtGet("Device.X_CISCO_COM_CableModem.", $CM_param);
 	?>
-	<div class="form-row ">
+	<div class="form-row odd">
 		<span class="readonlyLabel">CM MAC:</span>
 		<span class="value"><?php echo strtoupper($CM_value["MACAddress"]);?></span>
 	</div>
