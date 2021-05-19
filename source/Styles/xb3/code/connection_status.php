@@ -28,6 +28,7 @@
 
 <?php include('includes/nav.php'); ?>
 <?php $ForceDisable = getStr("Device.WiFi.X_RDK-CENTRAL_COM_ForceDisable"); ?>
+<?php $autoWanEnable= getStr("Device.DeviceInfo.X_RDKCENTRAL-COM_AutowanFeatureSupport"); ?>
 <?php  
 
     $interface = getStr("com.cisco.spvtg.ccsp.pam.Helper.FirstDownstreamIpInterface");
@@ -353,14 +354,26 @@ width: 80%;
         <p class="button"><a tabindex='0' href="comcast_network.php" class="btn">View</a></p>
         <div class="form-row">
         <span class="readonlyLabel">Internet:</span> <span class="value">
-              <?php 
-               $status = php_getstr("Device.X_CISCO_COM_CableModem.CMStatus"); 
-               if ( !strcasecmp($status, "Operational") ){
-                  echo "Active";
-               }
-               else{
-                  echo "Inactive";                   
-               }
+	<?php 
+		if( $autoWanEnable== "true")
+		{
+                	if ( "true" == php_getstr("Device.DeviceInfo.X_RDKCENTRAL-COM.InternetStatus")){
+                    		echo "Active";
+			}
+			else{
+                   		echo "Inactive";
+                	}
+		}
+		else
+		{
+              		 $status = php_getstr("Device.X_CISCO_COM_CableModem.CMStatus"); 
+              		 if ( !strcasecmp($status, "Operational") ){
+                  		echo "Active";
+               		}
+               		else{
+                  		echo "Inactive";                   
+			}
+		}
               ?>
         </span>
         </div>
