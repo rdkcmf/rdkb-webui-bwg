@@ -37,15 +37,24 @@ $RemoteAccess_param = array(
 	);
 $RemoteAccess_value = KeyExtGet("Device.UserInterface.X_CISCO_COM_RemoteAccess.", $RemoteAccess_param);
 
+if (($modelName != "CGA4131COM") && ($modelName != "CGA4332COM")) {
 $DeviceControl_param = array(
-	"https_port"	=> "Device.X_CISCO_COM_DeviceControl.HTTPSPort",
-	"telnet_mode"	=> "Device.X_CISCO_COM_DeviceControl.TelnetEnable",
-	"ssh_mode"	=> "Device.X_CISCO_COM_DeviceControl.SSHEnable",
-	"ipv4_gw"	=> "Device.X_CISCO_COM_DeviceControl.LanManagementEntry.1.LanIPAddress",
-	"ipv4_smask"	=> "Device.X_CISCO_COM_DeviceControl.LanManagementEntry.1.LanSubnetMask",
-	);
-$DeviceControl_value = KeyExtGet("Device.X_CISCO_COM_DeviceControl.", $DeviceControl_param);
+        "https_port"    => "Device.X_CISCO_COM_DeviceControl.HTTPSPort",
+        "telnet_mode"   => "Device.X_CISCO_COM_DeviceControl.TelnetEnable",
+        "ssh_mode"      => "Device.X_CISCO_COM_DeviceControl.SSHEnable",
+        "ipv4_gw"       => "Device.X_CISCO_COM_DeviceControl.LanManagementEntry.1.LanIPAddress",
+        "ipv4_smask"    => "Device.X_CISCO_COM_DeviceControl.LanManagementEntry.1.LanSubnetMask",
+        );
+}else{
+        $DeviceControl_param = array(
+        "https_port"    => "Device.X_CISCO_COM_DeviceControl.HTTPSPort",
+        "ssh_mode"      => "Device.X_CISCO_COM_DeviceControl.SSHEnable",
+        "ipv4_gw"       => "Device.X_CISCO_COM_DeviceControl.LanManagementEntry.1.LanIPAddress",
+        "ipv4_smask"    => "Device.X_CISCO_COM_DeviceControl.LanManagementEntry.1.LanSubnetMask",
+        );
+}
 
+$DeviceControl_value = KeyExtGet("Device.X_CISCO_COM_DeviceControl.", $DeviceControl_param);
 $https_mode	= $RemoteAccess_value['https_mode'];
 $allow_type	= $RemoteAccess_value['allow_type'];
 $start_ip	= $RemoteAccess_value['start_ip'];
