@@ -929,6 +929,9 @@ function remote_access_block(){
 			// $start_ipv6="0:0:0:0:0:0:0:1";
 			// $end_ipv6="0:0:0:0:0:0:0:2";
 			// $end_ipv6="x";
+			if ("x"==$start_ipv6 || "x"==$end_ipv6){
+				$start_ipv6 = $end_ipv6 = ":::::::";
+			}
 			$single_ip=explode(".",$start_ip);
                         $single_ipv6=explode(":",$start_ipv6);
 
@@ -936,9 +939,6 @@ function remote_access_block(){
 				$start_ip = $end_ip = "...";
 				// $start_ip	= getStr("Device.UserInterface.X_CISCO_COM_RemoteAccess.iprange.1.StartIP");
 				// $end_ip		= getStr("Device.UserInterface.X_CISCO_COM_RemoteAccess.iprange.1.EndIP");
-			}
-			if ("x"==$start_ipv6 || "x"==$end_ipv6){
-				$start_ipv6 = $end_ipv6 = ":::::::";
 			}
 			
 			if ($start_ip==$end_ip && $start_ipv6==$end_ipv6) {
