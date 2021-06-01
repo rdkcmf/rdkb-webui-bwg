@@ -60,6 +60,7 @@ if (!isset($_SESSION["loginuser"])) {
 	$sta_wifi = "false";
 	if("Disabled"==$_SESSION["psmMode"]){
 		$ssids = explode(",", getInstanceIds("Device.WiFi.SSID."));
+		if($_SESSION['loginuser'] == 'cusadmin') $ssids = [1,2];
 		foreach ($ssids as $i){
 			$r = (2 - intval($i)%2);	//1,3,5,7==1(2.4G); 2,4,6,8==2(5G)
 			if ("true" == getStr("Device.WiFi.Radio.$r.Enable") && "true" == getStr("Device.WiFi.SSID.$i.Enable")){	//bwg has radio.enable, active status is “at least one SSID and its Radio is enabled”
