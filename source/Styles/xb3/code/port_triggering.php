@@ -37,7 +37,8 @@ $PTEnable=getStr("Device.NAT.X_CISCO_COM_PortTriggers.Enable");
 <style>
 	td:not(.edit) {word-break: break-all;}
 	table td {
-		white-space: pre;
+		white-space: pre-wrap;
+                overflow-wrap: break-word;
 	}
 </style>
 
