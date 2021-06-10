@@ -364,7 +364,7 @@ $(document).ready(function() {
 		
 		$("#ipv4_dhcp_lease_time_amount").val(1);
 		$("#ipv4_dhcp_lease_time_measure").val("weeks");
-
+		updateIPv4();
 		var ipaddr = "10.1.10.1"; //ares specific requirement
 		var subnet_mask = "255.255.255.0"; 
 		var dhcp_begin_addr = "10.1.10.2";

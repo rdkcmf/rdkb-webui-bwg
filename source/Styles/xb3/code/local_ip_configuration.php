@@ -598,7 +598,7 @@ $(document).ready(function() {
 
 						$('#dns_manual_ipv4').attr('checked', false);
 						disablevalipv4();
-
+						updateIPv4();
 						/*$("#ipv4_primary_dns_1").val(75);
 						$("#ipv4_primary_dns_2").val(75);
 						$("#ipv4_primary_dns_3").val(75);
