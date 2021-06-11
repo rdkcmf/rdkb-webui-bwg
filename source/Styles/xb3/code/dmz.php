@@ -58,7 +58,7 @@ $IPv6Prefix = substr($IPv6Prefix,0, strrpos($IPv6Prefix, "::"));
 
 // these means disable, MUST show empty on GUI!!!
 ("0.0.0.0" == $host)	&& ($host = "");
-("x" == $hostv6)	&& ($hostv6 = "");
+("0:0:0:0:0:0:0:0" == $hostv6)	&& ($hostv6 = "");
 
 ?>
 
@@ -251,7 +251,7 @@ $('#save_setting').click(function() {
     var host2 = parseInt($("#dmz_host_address_3").val());
     var host3 = parseInt($("#dmz_host_address_4").val());
 
-	var hostv6 = IsBlank("ip6_address_r") ? 'x' : GetAddress(":", "ip6_address_r");
+	var hostv6 = IsBlank("ip6_address_r") ? '0:0:0:0:0:0:0:0' : GetAddress(":", "ip6_address_r");
 
 	if (isEnabledDMZ) {
 		// check the basic rules
