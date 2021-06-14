@@ -130,7 +130,25 @@ function sec2dhms($sec)
                 <div class="form-row odd">
                         <span class="readonlyLabel">WAN Mode:</span>
                         <span class="value"><?php echo (getStr("Device.X_RDKCENTRAL-COM_EthernetWAN.CurrentOperationalMode"));?></span>
+		</div>
+	<?php
+        if($_SESSION["loginuser"] == "cusadmin"){
+        ?>
+                <div class="form-row">
+                        <span class="readonlyLabel">MACsec Status:</span>
+                        <span class="value"><?php echo (getStr("Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.MACsecRequired.Enable"));?></span>
                 </div>
+		<?php
+                        $WANPort = getStr("Device.Ethernet.X_RDKCENTRAL-COM_WAN.Port");
+                        $i = $WANPort + 1;
+                ?>
+                <div class="form-row odd">
+                        <span class="readonlyLabel">eWAN Port Speed:</span>
+                        <span class="value"><?php echo (getStr("Device.Ethernet.Interface.$i.MaxBitRate"));?></span>
+                </div>
+        <?php
+        }
+        ?>
         <?php
         }
         ?>
