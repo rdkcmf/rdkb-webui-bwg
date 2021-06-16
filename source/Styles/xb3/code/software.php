@@ -28,6 +28,17 @@
 
 <?php include('includes/nav.php'); ?>
 
+<style>
+        @media only screen
+ and (max-device-width: 550px){
+
+        .forms .value{
+
+        font-size: 8.5px !important;
+        }
+}
+</style>
+
 <script type="text/javascript">
 $(document).ready(function() {
     comcast.page.init("Gateway > Software", "nav-software");
