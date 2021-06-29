@@ -93,14 +93,14 @@ $(document).ready(function() {
                                 ipv4_dhcp_beginning_address = long2ip(nw + 2);
 			}
 		}
-		var beginning_ip = ipv4_dhcp_beginning_address.split('.');
+		var beginning_ip = ip_addr.split('.');
 		var ending_ip = ipv4_dhcp_ending_address.split('.');
 		ending_ip[3] -= 1;
 		
 		$("#ipv4_dhcp_beginning_address_1").val(replaceNaNwithEmptyString(beginning_ip[0]));
 		$("#ipv4_dhcp_beginning_address_2").val(replaceNaNwithEmptyString(beginning_ip[1]));
 		$("#ipv4_dhcp_beginning_address_3").val(replaceNaNwithEmptyString(beginning_ip[2]));
-		$("#ipv4_dhcp_beginning_address_4").val(replaceNaNwithEmptyString(beginning_ip[3]));
+		$("#ipv4_dhcp_beginning_address_4").val(replaceNaNwithEmptyString(2));
 
 		$("#ipv4_dhcp_ending_address_1").val(replaceNaNwithEmptyString(ending_ip[0]));
 		$("#ipv4_dhcp_ending_address_2").val(replaceNaNwithEmptyString(ending_ip[1]));
@@ -274,7 +274,7 @@ $(document).ready(function() {
 			}
 			,ipv4_dhcp_beginning_address_4: {
 			    required: true,
-				min: 1,
+				min: 2,
 				max: 254,
 				digits: true
 			}
@@ -563,9 +563,13 @@ $('#submit_ipv4').click(function(e){
 	var dhcp4E2 = parseInt($("#ipv4_dhcp_ending_address_2").val());
 	var dhcp4E3 = parseInt($("#ipv4_dhcp_ending_address_3").val());
 	var dhcp4E4 = parseInt($("#ipv4_dhcp_ending_address_4").val());
+	var gtE2 = parseInt($("#ipv4_gateway_address_2").val());
+	var gtE3 = parseInt($("#ipv4_gateway_address_3").val());
+	var gtE4 = parseInt($("#ipv4_gateway_address_4").val());
 
 	var DBArr = Array(dhcp4B2, dhcp4B3, dhcp4B4);
 	var DEArr = Array(dhcp4E2, dhcp4E3, dhcp4E4);
+	var GWArr = Array(gtE2, gtE3, gtE4);
 
 	var ipaddr = $('#ipv4_gateway_address_1').val() + "." + $('#ipv4_gateway_address_2').val() + "." + $('#ipv4_gateway_address_3').val() + "." + $('#ipv4_gateway_address_4').val();
 	var subnet_mask = $("#ipv4_subnet_mask_1").val() + "." + $("#ipv4_subnet_mask_2").val() + "." + $("#ipv4_subnet_mask_3").val() + "." + $("#ipv4_subnet_mask_4").val();
@@ -576,7 +580,11 @@ $('#submit_ipv4').click(function(e){
                 jAlert("Invalid netmask!");
                 return;
     }
-	
+
+    if (! validate_v4addr_pool(GWArr,DBArr)) {
+        jAlert("Beginning Address can't be smaller than gateway address!");
+        return;
+    }	
     if (! validate_v4addr_pool(DBArr, DEArr)) {
         jAlert("Beginning Address can't be larger than ending address!");
         return;
