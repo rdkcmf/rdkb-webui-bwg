@@ -154,6 +154,7 @@ if($validation) $validation = validIPAddr($deviceInfo['reseverd_ipAddr']);
 if($validation) $validation = printableCharacters($deviceInfo['Comments']);
 if($validation) $validation = is_allowed_string($deviceInfo['Comments']);
 $result = ($validation)?'':'Invalid Inputs!';
+if($validation){
 if( !array_key_exists('delFlag', $deviceInfo) ) {
 
     //key kelFlag is not exist, so this is to reserve a ip addr for host 
@@ -313,7 +314,7 @@ else{
 
     $result = "success";
 }
-
+}
 echo htmlspecialchars(json_encode($result), ENT_NOQUOTES, 'UTF-8');
 
 ?>
